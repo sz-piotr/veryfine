@@ -3,7 +3,7 @@
   "description": "A delightful expect-style assertion and mocking library",
   "version": "0.1.0",
   "scripts": {
-    "build": "tsc -b tsconfig.build.json",
+    "build": "rm -rf dist && tsc -b tsconfig.build.json",
     "test": "mocha -r ts-node/register \"test/**/*.ts\"",
     "lint": "tslint --project tsconfig.json \"src/**/*.ts\" \"test/**/*.ts\""
   },
