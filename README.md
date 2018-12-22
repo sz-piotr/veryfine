@@ -1,6 +1,6 @@
 # Veryfine
 
-Verifine is a delightful expect-style assertion and mocking library for JavaScript.
+Veryfine is a delightful expect-style assertion and mocking library for JavaScript.
 It is intended for use with Mocha. Main features include: intelligent deep equality
 checking, built-in mock functions and hassle-free custom matchers.
 [Check out the documentation](https://veryfine.netlify.com/docs)!
@@ -19,7 +19,7 @@ npm install veryfine
 
 ## Use
 
-Verifine was made to be used with [Mocha](https://mochajs.org/), but can be
+Veryfine was made to be used with [Mocha](https://mochajs.org/), but can be
 used in any javascript environment.
 
 ```javascript
