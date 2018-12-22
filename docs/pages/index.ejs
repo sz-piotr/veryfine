@@ -1,0 +1,114 @@
+<%- include('../partials/head', { title: null }) %>
+
+<nav class="navbar">
+  <ul class="navbar__links">
+    <li><a class="navbar__link" href="/docs">Docs</a></li>
+    <li><a
+      class="navbar__link"
+      href="https://github.com/sz-piotr/veryfine"
+      target="_blank"
+    >Github</a></li>
+  </ul>
+</nav>
+
+<header class="header">
+  <h1 class="header-title">
+    <strong class="header-title__name">Veryfine</strong>
+    <span class="header-title__subtitle">that your code works</span>
+  </h1>
+</header>
+
+<section class="install">
+  <div class="install__buttons">
+    <button class="install__button install__button--active">Install with Yarn</button>
+    <button class="install__button">Install with NPM</button>
+  </div>
+  <pre class="install__code install__code--active"><code>&gt; <strong>yarn</strong> add veryfine</code></pre>
+  <pre class="install__code"><code>&gt; <strong>npm</strong> install veryfine</code></pre>
+</section>
+
+<section class="description">
+  <p class="description__text">
+    Verifine is a delightful expect-style assertion and mocking library for JavaScript.
+    It is intended for use with <a href="https://mochajs.org/" target="_blank">Mocha</a>.
+    Main features include: intelligent deep equality checking, built-in mock functions
+    and hassle-free custom matchers. <a href="/docs">Check out the documentation</a>!
+  </p>
+</section>
+
+<section class="features">
+  <h2 class="features__title">Features</h2>
+
+  <section class="feature">
+    <p class="feature__description">
+      Intelligent deep equality checking. Use a wide range of expectations to
+      check something about a value without specifying it explicitly.
+      <a href="/docs">Read more</a>.
+    </p>
+    <pre><code class="feature__code language-javascript"><% -%>
+import { expect } from 'veryfine'
+
+const person = {
+  name: 'You',
+  excited: true,
+  plans: [
+    { action: 'install', what: 'Veryfine' }
+    'Be awesome!'
+  ],
+}
+
+expect(nestedValue).toEqual({
+  name: 'You',
+  excited: expect.type('boolean'),
+  plans: [
+    { action: 'install', what: 'Veryfine' },
+    expect.anything()
+  ]
+})
+    <%_ %></code></pre>
+  </section>
+
+  <section class="feature">
+    <pre><code class="feature__code language-javascript"><% -%>
+import { expect, mockFn } from 'veryfine'
+
+const myMock = mockFn()
+myMock('hi')
+
+expect(myMock).calledWith('hi')
+    <%_ %></code></pre>
+    <p class="feature__description">
+      Built-in mock functions make it easy to test that your code makes all the
+      calls it needs.
+      <a href="/docs">Read more</a>.
+    </p>
+  </section>
+
+  <section class="feature">
+    <p class="feature__description">
+      Hassle-free custom matchers are a way to extend the capabilities of Veryfine
+      to match your need. Use any function you like when making assertions about
+      the values in your code!
+      <a href="/docs">Read more</a>.
+    </p>
+    <pre><code class="feature__code language-javascript"><% -%>
+import { expect } from 'veryfine'
+
+function likesTrains(person) {
+  return person && person.likesTrains
+}
+
+const me = {
+  likesTrains: false
+}
+
+expect(me, likesTrains)
+// AssertionError: likesTrains check failed
+    <%_ %></code></pre>
+  </section>
+
+</section>
+
+<script src="scripts/install.js"></script>
+
+<%- include('../partials/tail') %>

@@ -1,0 +1,19 @@
+.token.keyword,
+.token.boolean,
+.token.number {
+  font-weight: bold;
+}
+
+.token.string {
+  font-style: italic;
+}
+
+.token.punctuation,
+.token.function {
+  color: white;
+}
+
+.token.comment {
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
