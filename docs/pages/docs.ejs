@@ -1,0 +1,23 @@
+<%- include('../partials/head', { title: null }) %>
+
+<nav class="navbar">
+  <ul class="navbar__links">
+    <li><a class="navbar__link" href="/">Home</a></li>
+    <li><a
+      class="navbar__link"
+      href="https://github.com/sz-piotr/veryfine"
+      target="_blank"
+      rel="noopener"
+    >Github</a></li>
+  </ul>
+</nav>
+
+<article class="documentation">
+  <h1 class="documentation-header">
+    <strong class="documentation-header__title">Veryfine</strong>
+    <span class="documentation-header__subtitle">documentation</span>
+  </h1>
+  <%- documentation %>
+</article>
+
+<%- include('../partials/tail') %>

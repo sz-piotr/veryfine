@@ -29,7 +29,7 @@ button {
 }
 
 pre code {
-  overflow: auto;
+  overflow-x: auto;
   display: block;
   padding: 15px;
   margin: 0 -15px;
@@ -72,24 +72,28 @@ a {
   font-size: 1.1rem;
 }
 
-.header-title {
+.header-title,
+.documentation-header {
   text-align: center;
   margin: 0;
 }
 
-.header-title__name {
+.header-title__name,
+.documentation-header__title {
   display: block;
   font-size: 5rem;
   font-weight: bold;
 }
 
 @media only screen and (max-width: 500px) {
-  .header-title__name {
+  .header-title__name,
+  .documentation-header__title {
     font-size: 3rem;
   }
 }
 
-.header-title__subtitle {
+.header-title__subtitle,
+.documentation-header__subtitle {
   display: block;
   font-size: 1.5rem;
   font-weight: normal;
@@ -192,6 +196,38 @@ a {
     padding-right: 0;
     margin-left: 15px;
     padding-left: 15px;
+  }
+}
+
+.documentation {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px 15px 15px;
+}
+
+.documentation h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.documentation h2 {
+  font-size: 2.5rem;
+  margin-top: 60px;
+}
+
+.documentation h3 {
+  margin-top: 60px;
+  overflow-x: auto;
+  font-size: 1.8rem;
+}
+
+.documentation h3 code {
+  color: #3f51b5;
+}
+
+@media only screen and (max-width: 500px) {
+  .documentation h3 {
+    font-size: 1.2rem;
   }
 }
 

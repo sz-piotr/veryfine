@@ -1,5 +1,3 @@
-# Veryfine - API Reference
-
 ## Verifiers
 
 ### `.toEqual(value)`
