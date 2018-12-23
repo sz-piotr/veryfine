@@ -1,19 +1,29 @@
 .token.keyword,
 .token.boolean,
 .token.number {
+  color: #ff5252;
   font-weight: bold;
 }
 
 .token.string {
   font-style: italic;
+  color: #56ea56;
 }
 
-.token.punctuation,
-.token.function {
+.token.punctuation {
   color: white;
+}
+
+.token.function,
+.token.class-name {
+  color: #adb9ff;
 }
 
 .token.comment {
   color: #ffeb3b;
   font-style: italic;
+}
+
+.token.operator {
+  font-weight: bold;
 }

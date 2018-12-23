@@ -7,13 +7,17 @@ const glob = promisify(require('glob'));
 
 const pagesDir = path.join(__dirname, 'pages');
 const outDir = path.join(__dirname, 'public');
-const apiReferencePath = path.join(__dirname, 'documentation.md');
+
+function markdown(name) {
+  const location = path.join(__dirname, 'markdown', name + '.md');
+  return marked(fse.readFileSync(location, 'utf-8'), {
+    headerIds: false
+  });
+}
 
 async function build() {
   await fse.emptyDir(outDir);
   await fse.copy(path.join(__dirname, 'static'), outDir);
-
-  const documentation = marked(await fse.readFile(apiReferencePath, 'utf-8'));
 
   const files = await glob('**/*.ejs', { cwd: pagesDir });
   files.forEach(async (file) => {
@@ -23,7 +27,7 @@ async function build() {
       : path.join(outDir, dir, name);
 
     await fse.mkdirs(destPath);
-    const output = await ejs.renderFile(path.join(pagesDir, file), { documentation });
+    const output = await ejs.renderFile(path.join(pagesDir, file), { markdown });
     await fse.writeFile(
       path.join(destPath, `index.html`),
       output

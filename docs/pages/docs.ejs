@@ -17,7 +17,22 @@
     <strong class="documentation-header__title">Veryfine</strong>
     <span class="documentation-header__subtitle">documentation</span>
   </h1>
-  <%- documentation %>
+
+  <section>
+    <h2 id="verifiers">Verifiers</h2>
+    <%- include('../partials/docitem', { name: 'verifiers/toEqual' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toStrictlyEqual' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toBeInstanceOf' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toHaveTypeOf' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toBeTruthy' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toBeFalsy' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toBeGreaterThan' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toBeGreaterThanOrEqual' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toBeLessThan' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toBeLessThanOrEqual' }) %>
+    <%- include('../partials/docitem', { name: 'verifiers/toBeCloseTo' }) %>
+  </section>
 </article>
 
+<%- include('../partials/footer') %>
 <%- include('../partials/tail') %>

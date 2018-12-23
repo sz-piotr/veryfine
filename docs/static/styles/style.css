@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: 'Open Sans', Roboto, Helvetica, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.87);
@@ -6,40 +10,36 @@ html {
 }
 
 body {
-  background-color: #ffeb3b;
+  background-color: #fafafa;
 }
 
 button {
-  color: rgba(0, 0, 0, 0.87);
+  color: inherit;
 }
 
-::-moz-selection {
-  background-color: rgba(255, 82, 82, 0.99);
-  color: rgba(255, 255, 255, 0.87);
-}
-
-::-webkit-selection {
-  background-color: rgba(255, 82, 82, 0.99);
-  color: rgba(255, 255, 255, 0.87);
-}
-
-::selection {
-  background-color: rgba(255, 82, 82, 0.99);
-  color: rgba(255, 255, 255, 0.87);
+pre {
+  margin: 0;
 }
 
 pre code {
+  box-sizing: content-box;
   overflow-x: auto;
   display: block;
   padding: 15px;
   margin: 0 -15px;
   width: 100%;
-  background-color: #3f51b5;
+  background-color: #222;
   color: rgba(255, 255, 255, 0.87);
 }
 
 a {
   color: inherit;
+}
+
+h2 {
+  padding: 0 15px;
+  font-size: 2.5rem;
+  margin-top: 60px;
 }
 
 .navbar {
@@ -100,7 +100,7 @@ a {
 }
 
 .install {
-  max-width: 400px;
+  max-width: 420px;
   margin: 60px auto 0 auto;
   padding: 15px;
 }
@@ -130,6 +130,7 @@ a {
 
 .install__code {
   display: none;
+  margin-top: 1rem;
 }
 
 .install__code--active {
@@ -154,10 +155,74 @@ a {
   line-height: 1.4;
 }
 
+.footer {
+  text-align: center;
+  margin: 60px 0;
+}
+
+/* DOCUMENTATION */
+
+.documentation {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.documentation h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.documentation h3 {
+  margin-top: 0;
+  font-size: 1.8rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .documentation h3 {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    box-sizing: content-box;
+    margin: 0 -15px;
+    padding: 0 15px;
+    font-size: 1.3rem;
+    white-space: pre;
+  }
+}
+
+.docitem,
+.feature {
+  position: relative;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.3);
+  margin-bottom: 60px;
+}
+
+.docitem + .docitem::before,
+.feature + .feature::before {
+  content: "***";
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* FEATURES */
+
 .features {
   max-width: 800px;
   margin: 40px auto 0 auto;
-  padding: 15px;
+}
+
+@media only screen and (max-width: 500px) {
+  .features h2 {
+    margin-top: 20px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -167,7 +232,7 @@ a {
 }
 
 .feature__description {
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
   font-size: 1.2rem;
   line-height: 1.4;
 }
@@ -175,15 +240,28 @@ a {
 @media only screen and (min-width: 800px) {
   .feature {
     display: flex;
+    margin-top: 2rem;
+    padding: 0 15px;
+  }
+
+  .feature pre code {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .feature:nth-child(3) {
     flex-direction: row-reverse;
   }
 
+  .feature:nth-child(3) pre code {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
   .feature__description {
-    margin-top: 3rem;
-    line-height: 1.6;
+    margin-top: 2rem;
   }
 
   .feature__description {
@@ -197,41 +275,4 @@ a {
     margin-left: 15px;
     padding-left: 15px;
   }
-}
-
-.documentation {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 15px 15px 15px;
-}
-
-.documentation h1 {
-  font-size: 3rem;
-  text-align: center;
-}
-
-.documentation h2 {
-  font-size: 2.5rem;
-  margin-top: 60px;
-}
-
-.documentation h3 {
-  margin-top: 60px;
-  overflow-x: auto;
-  font-size: 1.8rem;
-}
-
-.documentation h3 code {
-  color: #3f51b5;
-}
-
-@media only screen and (max-width: 500px) {
-  .documentation h3 {
-    font-size: 1.2rem;
-  }
-}
-
-.footer {
-  text-align: center;
-  margin: 60px 0;
 }
