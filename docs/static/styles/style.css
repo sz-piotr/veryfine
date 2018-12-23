@@ -297,3 +297,20 @@ hr {
     padding-left: 15px;
   }
 }
+
+.backtotop {
+  position: fixed;
+  bottom: -40px;
+  right: 15px;
+  border-radius: 2px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding:  5px 10px;
+  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: bottom .3s ease-out;
+}
