@@ -1,1 +1,1 @@
-### `mockFn([fn])`
+### `mockFn([implementation])`

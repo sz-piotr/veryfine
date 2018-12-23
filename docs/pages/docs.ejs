@@ -1,4 +1,4 @@
-<%- include('../partials/head', { title: 'Documentation :: Veryfine' }) %>
+<%- include('../partials/head', { title: 'Veryfine - Documentation' }) %>
 
 <nav class="navbar">
   <ul class="navbar__links">
@@ -18,9 +18,21 @@
     <span class="documentation-header__subtitle">documentation</span>
   </h1>
 
+  <nav class="documentation-nav">
+    <ul>
+      <li><a href="#verifiers">Verifiers</a></li>
+      <li><a href="#modifiers">Modifiers</a></li>
+      <li><a href="#expectations">Expectations</a></li>
+      <li><a href="#mocks">Mocks</a></li>
+    </ul>
+  </nav>
+
+  <hr>
+
   <section>
     <h2 id="verifiers">Verifiers</h2>
 
+    <%- include('../partials/intro', { name: 'verifiers' }) %>
     <%- include('../partials/docitem', { name: 'verifiers/toEqual' }) %>
     <%- include('../partials/docitem', { name: 'verifiers/toStrictlyEqual' }) %>
     <%- include('../partials/docitem', { name: 'verifiers/toBeInstanceOf' }) %>
@@ -43,6 +55,7 @@
 
     <h2 id="modifiers">Modifiers</h2>
 
+    <%- include('../partials/intro', { name: 'modifiers' }) %>
     <%- include('../partials/docitem', { name: 'modifiers/not' }) %>
     <%- include('../partials/docitem', { name: 'modifiers/then' }) %>
 
@@ -73,7 +86,6 @@
     <%- include('../partials/docitem', { name: 'mocks/throws' }) %>
     <%- include('../partials/docitem', { name: 'mocks/resolves' }) %>
     <%- include('../partials/docitem', { name: 'mocks/rejects' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/chaining' }) %>
     <%- include('../partials/docitem', { name: 'mocks/returnsOnce' }) %>
     <%- include('../partials/docitem', { name: 'mocks/throwsOnce' }) %>
     <%- include('../partials/docitem', { name: 'mocks/resolvesOnce' }) %>
