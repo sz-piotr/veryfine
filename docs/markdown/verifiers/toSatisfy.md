@@ -1,0 +1,1 @@
+### `.toSatisfy(fn[, message])`

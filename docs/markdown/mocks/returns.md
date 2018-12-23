@@ -1,0 +1,1 @@
+### `mockFn().returns(value)`

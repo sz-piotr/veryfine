@@ -7,6 +7,8 @@ If the value is not a number it will always fail, even if this verifier is negat
 #### Examples
 
 ```javascript
+import { expect } from 'veryfine'
+
 expect(1).toBeLessThan(2)
 expect(-2).toBeLessThan(-1)
 expect(-Infinity).toBeLessThan(1)

@@ -191,6 +191,10 @@ h2 {
   }
 }
 
+.intro {
+  padding: 0 15px;
+}
+
 .docitem,
 .feature {
   position: relative;

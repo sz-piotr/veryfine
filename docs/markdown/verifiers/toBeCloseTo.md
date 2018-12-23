@@ -11,6 +11,8 @@ If the value is not a number it will always fail, even if this verifier is negat
 #### Examples
 
 ```javascript
+import { expect } from 'veryfine'
+
 expect(0.1 + 0.2).toBeCloseTo(0.3)
 expect(0.1 + 0.2).not.toBeCloseTo(0.4)
 

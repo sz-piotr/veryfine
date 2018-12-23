@@ -1,0 +1,1 @@
+### `mockFn().throws([error])`
