@@ -1,6 +1,7 @@
 ### `.toBeFalsy()`
 
-Use `.toBeFalsy` to determine if a value evaluates to `false` in a boolean context (`!!value === false`).
+Use `.toBeFalsy` to determine if a value evaluates to `false` in a
+boolean context (`!!value === false`).
 
 #### Examples
 

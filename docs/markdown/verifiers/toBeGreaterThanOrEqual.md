@@ -2,7 +2,8 @@
 
 Use `.toBeGreaterThanOrEqual` to check if a value is a number greater than or equal to the argument.
 
-If the value is not a number it will always fail, even if this verifier is negated with `.not`.
+If the value is not a number the check will always fail, even if this verifier is
+negated with [`.not`](#modifiers-not).
 
 #### Examples
 

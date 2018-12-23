@@ -1,6 +1,8 @@
 ### `.toBeTruthy()`
 
-Use `.toBeTruthy` to determine if a value evaluates to `true` in a boolean context (`!!value === true`). In JavaScript all values are truthy unless they are defined as falsy.
+Use `.toBeTruthy` to determine if a value evaluates to `true` in a boolean
+context (`!!value === true`). In JavaScript all values are truthy unless they
+are defined as falsy.
 
 #### Examples
 

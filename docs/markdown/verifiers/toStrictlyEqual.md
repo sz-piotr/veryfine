@@ -1,6 +1,9 @@
 ### `.toStrictlyEqual(value)`
 
-Use `.toStrictlyEqual` to check for strict (`===`) equality of values. For primitives this behaves almost exactly like `.toEqual` with differences listed below. When comparing objects however no deep equality checks are performed.
+Use `.toStrictlyEqual` to check for strict (`===`) equality of values.
+For primitives this behaves almost exactly like [`.toEqual`](#verifiers-toequal)
+with differences listed below. When comparing objects however no deep equality
+checks are performed.
 
 #### Differences with primitives
 

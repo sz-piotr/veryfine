@@ -6,7 +6,8 @@ them directly (`0.1 + 0.2 !== 0.3`).
 
 Additionaly precision might be supplied as a second argument.
 
-If the value is not a number it will always fail, even if this verifier is negated with `.not`.
+If the value is not a number the check will always fail, even if this verifier is
+negated with [`.not`](#modifiers-not).
 
 #### Examples
 

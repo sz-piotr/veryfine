@@ -2,8 +2,8 @@ Verifiers are the bread and butter of the Verifine library. They allow you
 to make assertions about your code and aid you in writing readable tests.
 
 Using verifiers is easy. Call the `expect` function with a value and then
-call a method like `.toEqual` on the result. If the check is not successful
-an exception will be thrown. Simple, right?
+call a method like [`.toEqual`](#verifiers-toequal) on the result.
+If the check is not successful an exception will be thrown. Simple, right?
 
 Below is a list of all the verifiers for your convinience:
 
