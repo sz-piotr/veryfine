@@ -5,6 +5,10 @@
   font-weight: bold;
 }
 
+.token.regex {
+  color: #ff5252;
+}
+
 .token.string {
   font-style: italic;
   color: #56ea56;

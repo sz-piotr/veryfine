@@ -1,8 +1,10 @@
 ### `.toEqual(value)`
 
 Use `.toEqual` to check for deep equality of values. Additionally `.toEqual`
-supports using [expectations](#expectations). To check for strict equality
-(`===`) use [`.toStrictlyEqual`](#verifiers-tostrictlyequal).
+supports using [expectations](#expectations).
+
+To check for strict equality (`===`) use [`.toStrictlyEqual`](#verifiers-tostrictlyequal).
+To allow more properties on the evaluated object use [`.toMatchObject`](#verifiers-tomatchobject).
 
 #### Deep equality rules
 
