@@ -6,8 +6,8 @@ them directly (`0.1 + 0.2 !== 0.3`).
 
 Additionaly precision might be supplied as a second argument.
 
-If the value is not a number the check will always fail, even if this verifier is
-negated with [`.not`](#modifiers-not).
+If the value is not a number the check will always fail. This means that the
+negated (`.not`) version will succeed for non-number values.
 
 #### Examples
 
@@ -22,6 +22,6 @@ expect(0.150 + 0.049).not.toBeCloseTo(0.2)
 expect(0.150 + 0.049).toBeCloseTo(0.2, 0.01)
 
 // things that are not numbers always fail
-expect('2').toBeCloseTo(2) // AssertionError
-expect('hello').not.toBeCloseTo(2) // AssertionError
+expect('2').not.toBeCloseTo(2)
+expect('hello').not.toBeCloseTo(2)
 ```
