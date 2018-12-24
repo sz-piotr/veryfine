@@ -1,1 +1,1 @@
-### `.toSatisfy(fn[, message])`
+### `.toSatisfy(fn)`

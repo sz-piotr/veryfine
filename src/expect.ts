@@ -1,4 +1,5 @@
-import { fail } from './fail';
+import { validateStrictlyEqual } from './validators/validateStrictlyEqual';
+import { validateSatisfy } from './validators/validateSatisfy';
 
 export function expect(value: any) {
   return new Expect(value);
@@ -21,26 +22,13 @@ class Expect {
     return this;
   }
 
-  toSatisfy(fn: (value: any) => void, message?: string): void;
-  toSatisfy(fn: (value: any) => Promise<void>, message?: string): Promise<void>;
-  toSatisfy(fn: (value: any) => any, message?: string): any {
-    const name = (fn as any).name || 'toSatisfy';
+  toStrictlyEqual(expected: any) {
+    return this.toSatisfy(validateStrictlyEqual(expected));
+  }
 
-    let result;
-    try {
-      result = fn(this.value);
-    } catch (e) {
-      if (!this.negated) {
-        throw e;
-      } else {
-        return;
-      }
-    }
-
-    if (result !== true && !this.negated) {
-      fail(`${name} check failed`);
-    } else if (result === true && this.negated) {
-      fail(`${name} check succeded, but was expected to fail`);
-    }
+  toSatisfy(fn: (value: any) => Promise<any>): Promise<void>;
+  toSatisfy(fn: (value: any) => any): void;
+  toSatisfy(fn: (value: any) => any): any {
+    return validateSatisfy(this.value, this.negated, fn);
   }
 }
