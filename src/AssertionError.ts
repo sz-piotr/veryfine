@@ -4,8 +4,8 @@ export class AssertionError extends Error {
 
   constructor (
     message: string,
-    expected: any,
-    actual: any
+    expected?: any,
+    actual?: any
   ) {
     super(message)
     overridePrototype(this, AssertionError.prototype)
