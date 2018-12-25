@@ -1,6 +1,7 @@
 import { validateSatisfy, Validator, AsyncValidator } from './validators/validateSatisfy'
 import { validateStrictlyEqual } from './validators/validateStrictlyEqual'
 import { validateInstanceOf } from './validators/validateInstanceOf'
+import { validateTypeOf } from './validators/validateTypeOf'
 import { validateTruthy } from './validators/validateTruthy'
 import { validateFalsy } from './validators/validateFalsy'
 
@@ -31,6 +32,10 @@ class Expect {
 
   toBeInstanceOf (constructor: Function) {
     return this.toSatisfy(validateInstanceOf(constructor))
+  }
+
+  toHaveTypeOf (type: string) {
+    return this.toSatisfy(validateTypeOf(type))
   }
 
   toBeTruthy () {
