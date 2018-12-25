@@ -40,8 +40,9 @@ function processResult (result: unknown, negated: boolean, name: string) {
 }
 
 function isValidationResult (value: unknown): value is ValidationResult {
+  // TODO: print warning for objects
   return value &&
-    typeof value === 'object' && // tslint:disable-line
+    typeof value === 'object' &&
     hasProperty(value, 'success') &&
     hasProperty(value, 'message') &&
     hasProperty(value, 'negatedMessage')

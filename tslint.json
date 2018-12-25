@@ -2,5 +2,9 @@
   "defaultSeverity": "error",
   "extends": [
     "tslint-config-standard"
-  ]
+  ],
+  "rules": {
+    "strict-type-predicates": false,
+    "no-empty": [true, "allow-empty-functions"]
+  }
 }

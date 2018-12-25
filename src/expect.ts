@@ -1,5 +1,6 @@
 import { validateSatisfy, Validator, AsyncValidator } from './validators/validateSatisfy'
 import { validateStrictlyEqual } from './validators/validateStrictlyEqual'
+import { validateInstanceOf } from './validators/validateInstanceOf'
 import { validateTruthy } from './validators/validateTruthy'
 import { validateFalsy } from './validators/validateFalsy'
 
@@ -26,6 +27,10 @@ class Expect {
 
   toStrictlyEqual (expected: any) {
     return this.toSatisfy(validateStrictlyEqual(expected))
+  }
+
+  toBeInstanceOf (constructor: Function) {
+    return this.toSatisfy(validateInstanceOf(constructor))
   }
 
   toBeTruthy () {
