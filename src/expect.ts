@@ -1,5 +1,7 @@
-import { validateStrictlyEqual } from './validators/validateStrictlyEqual'
 import { validateSatisfy, Validator, AsyncValidator } from './validators/validateSatisfy'
+import { validateStrictlyEqual } from './validators/validateStrictlyEqual'
+import { validateTruthy } from './validators/validateTruthy'
+import { validateFalsy } from './validators/validateFalsy'
 
 export function expect (value: any) {
   return new Expect(value)
@@ -24,6 +26,14 @@ class Expect {
 
   toStrictlyEqual (expected: any) {
     return this.toSatisfy(validateStrictlyEqual(expected))
+  }
+
+  toBeTruthy () {
+    return this.toSatisfy(validateTruthy)
+  }
+
+  toBeFalsy () {
+    return this.toSatisfy(validateFalsy)
   }
 
   toSatisfy (fn: Validator): void

@@ -122,7 +122,7 @@ describe('.toSatisfy', () => {
         message: '',
         negatedMessage: 'foo',
         expected: 1,
-        actual: 2,
+        actual: 2
       }))
     } catch (e) {
       err = e
@@ -148,7 +148,7 @@ describe('.toSatisfy', () => {
         message: 'foo',
         negatedMessage: '',
         expected: 1,
-        actual: 2,
+        actual: 2
       }))
     } catch (e) {
       err = e
@@ -192,7 +192,6 @@ describe('.toSatisfy', () => {
     doExpect(caught1.expected).to.equal(err1.expected)
     doExpect(caught1.actual).to.equal(err1.actual)
 
-
     const err2 = new AssertionError('foo', 1, 2)
     let caught2
     try {
@@ -226,7 +225,6 @@ describe('.toSatisfy', () => {
     doExpect(caught1.message).to.equal(err1.message)
     doExpect(caught1.expected).to.equal(err1.expected)
     doExpect(caught1.actual).to.equal(err1.actual)
-
 
     const err2 = new AssertionError('foo', 1, 2)
     let caught2
