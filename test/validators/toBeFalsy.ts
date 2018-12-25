@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { expect as doExpect } from 'chai'
+import { expect as chaiExpect } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 describe('.toBeFalsy', () => {
@@ -15,7 +15,7 @@ describe('.toBeFalsy', () => {
   })
 
   it('fails when values are not falsy', () => {
-    doExpect(() => {
+    chaiExpect(() => {
       expect(true).toBeFalsy()
     }).to.throw(AssertionError)
   })
@@ -23,7 +23,7 @@ describe('.toBeFalsy', () => {
   it('can be negated', () => {
     expect(true).not.toBeFalsy()
 
-    doExpect(() => {
+    chaiExpect(() => {
       expect(false).not.toBeFalsy()
     }).to.throw(AssertionError)
   })

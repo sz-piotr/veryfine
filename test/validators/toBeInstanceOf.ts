@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { expect as doExpect } from 'chai'
+import { expect as chaiExpect } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 class Foo {}
@@ -8,7 +8,7 @@ class FooBar extends Foo {}
 
 describe('.toBeInstanceOf', () => {
   it('validates the argument to be a function', () => {
-    doExpect(() => {
+    chaiExpect(() => {
       expect(new Foo()).toBeInstanceOf('NOT_A_FUNCTION' as any)
     }).to.throw(TypeError)
   })
@@ -29,23 +29,23 @@ describe('.toBeInstanceOf', () => {
   })
 
   it('fails when values are not instances of argument', () => {
-    doExpect(() => {
+    chaiExpect(() => {
       expect(new Bar()).toBeInstanceOf(Foo)
     }).to.throw(AssertionError)
 
-    doExpect(() => {
+    chaiExpect(() => {
       expect(Object.create(null)).toBeInstanceOf(Object)
     }).to.throw(AssertionError)
 
-    doExpect(() => {
+    chaiExpect(() => {
       expect(1).toBeInstanceOf(Number)
     }).to.throw(AssertionError)
 
-    doExpect(() => {
+    chaiExpect(() => {
       expect('hi').toBeInstanceOf(String)
     }).to.throw(AssertionError)
 
-    doExpect(() => {
+    chaiExpect(() => {
       expect(true).toBeInstanceOf(Boolean)
     }).to.throw(AssertionError)
   })
@@ -53,7 +53,7 @@ describe('.toBeInstanceOf', () => {
   it('can be negated', () => {
     expect(new Foo()).not.toBeInstanceOf(Bar)
 
-    doExpect(() => {
+    chaiExpect(() => {
       expect(new Bar()).toBeInstanceOf(Foo)
     }).to.throw(AssertionError)
   })
