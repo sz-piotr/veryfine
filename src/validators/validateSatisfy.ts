@@ -1,20 +1,20 @@
-import { fail } from '../fail';
+import { fail } from '../fail'
 
-export function validateSatisfy(
+export function validateSatisfy (
   value: any,
   negated: boolean,
-  fn: (value: any) => any,
+  fn: (value: any) => any
 ) {
-  const name = (fn as any).name || 'toSatisfy';
+  const name = (fn as any).name || 'toSatisfy'
 
-  let result: any;
+  let result: any
   try {
-    result = fn(value);
+    result = fn(value)
   } catch (e) {
     if (!negated) {
-      throw e;
+      throw e
     }
-    return;
+    return
   }
 
   if (result && typeof result.then === 'function') {
@@ -22,18 +22,18 @@ export function validateSatisfy(
       (success: any) => processResult(success, negated, name),
       (error: any) => {
         if (!negated) {
-          throw error;
+          throw error
         }
-      },
-    );
+      }
+    )
   }
-  processResult(result, negated, name);
+  processResult(result, negated, name)
 }
 
-function processResult(result: any, negated: boolean, name: string) {
+function processResult (result: any, negated: boolean, name: string) {
   if (result !== true && !negated) {
-    fail(`${name} check failed`);
+    fail(`${name} check failed`)
   } else if (result === true && negated) {
-    fail(`${name} check succeded, but was expected to fail`);
+    fail(`${name} check succeded, but was expected to fail`)
   }
 }

@@ -1,6 +1,6 @@
-export function stringify(value: any): string {
+export function stringify (value: any): string {
   try {
-    return JSON.stringify(value);
+    return JSON.stringify(value)
   } catch {
     return '[Unserializable]'
   }

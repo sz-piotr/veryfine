@@ -1,2 +1,2 @@
-export { expect } from './expect';
-export { fail } from './fail';
+export { expect } from './expect'
+export { fail } from './fail'

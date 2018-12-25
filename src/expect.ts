@@ -1,34 +1,34 @@
-import { validateStrictlyEqual } from './validators/validateStrictlyEqual';
-import { validateSatisfy } from './validators/validateSatisfy';
+import { validateStrictlyEqual } from './validators/validateStrictlyEqual'
+import { validateSatisfy } from './validators/validateSatisfy'
 
-export function expect(value: any) {
-  return new Expect(value);
+export function expect (value: any) {
+  return new Expect(value)
 }
 
 class Expect {
-  private value: any;
-  private negated = false;
+  private value: any
+  private negated = false
 
-  constructor(value: any) {
-    this.value = value;
+  constructor (value: any) {
+    this.value = value
   }
 
-  get not() {
+  get not () {
     if (!this.negated) {
-      this.negated = true;
+      this.negated = true
     } else {
-      throw new TypeError('Cannot negate an already negated validator.');
+      throw new TypeError('Cannot negate an already negated validator.')
     }
-    return this;
+    return this
   }
 
-  toStrictlyEqual(expected: any) {
-    return this.toSatisfy(validateStrictlyEqual(expected));
+  toStrictlyEqual (expected: any) {
+    return this.toSatisfy(validateStrictlyEqual(expected))
   }
 
-  toSatisfy(fn: (value: any) => Promise<any>): Promise<void>;
-  toSatisfy(fn: (value: any) => any): void;
-  toSatisfy(fn: (value: any) => any): any {
-    return validateSatisfy(this.value, this.negated, fn);
+  toSatisfy (fn: (value: any) => Promise<any>): Promise<void>
+  toSatisfy (fn: (value: any) => any): void
+  toSatisfy (fn: (value: any) => any): any {
+    return validateSatisfy(this.value, this.negated, fn)
   }
 }
