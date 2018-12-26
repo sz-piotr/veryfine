@@ -8,6 +8,7 @@ import { validateGreaterThan } from './validators/validateGreaterThan'
 import { validateGreaterThanOrEqual } from './validators/validateGreaterThanOrEqual'
 import { validateLessThan } from './validators/validateLessThan'
 import { validateLessThanOrEqual } from './validators/validateLessThanOrEqual'
+import { validateCloseTo } from './validators/validateCloseTo'
 
 export function expect (value: any) {
   return new Expect(value)
@@ -64,6 +65,10 @@ class Expect {
 
   toBeLessThanOrEqual (value: number) {
     return this.toSatisfy(validateLessThanOrEqual(value))
+  }
+
+  toBeCloseTo (value: number, precision?: number) {
+    return this.toSatisfy(validateCloseTo(value, precision))
   }
 
   toSatisfy (fn: Validator): void

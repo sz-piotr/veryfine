@@ -1,14 +1,15 @@
 import { stringify } from '../stringify'
+import { isNumber } from '../utils/isNumber'
 
 export function validateLessThan (expected: unknown) {
-  if (typeof expected !== 'number' || isNaN(expected)) {
+  if (!isNumber(expected)) {
     throw new TypeError('argument 0 of .toBeLessThan must be a number')
   }
 
   return function (actual: any) {
     const actualString = stringify(actual)
 
-    if (typeof actual !== 'number' || isNaN(expected)) {
+    if (!isNumber(expected)) {
       return {
         success: false,
         message: `expected ${actualString} to be less than ${expected}, but it is not a number`,
