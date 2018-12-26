@@ -1,4 +1,5 @@
 import { AssertionError } from '../AssertionError'
+import { hasOwnProperty } from '../utils/hasOwnProperty'
 
 export type ValidationResult = {
   success: boolean,
@@ -43,10 +44,7 @@ function isValidationResult (value: unknown): value is ValidationResult {
   // TODO: print warning for objects
   return value &&
     typeof value === 'object' &&
-    hasProperty(value, 'success') &&
-    hasProperty(value, 'message') &&
-    hasProperty(value, 'negatedMessage')
+    hasOwnProperty(value, 'success') &&
+    hasOwnProperty(value, 'message') &&
+    hasOwnProperty(value, 'negatedMessage')
 }
-
-const hasProperty = (value: any, prop: string) =>
-  Object.prototype.hasOwnProperty.call(value, prop)

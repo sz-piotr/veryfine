@@ -33,7 +33,7 @@ export function validateCloseTo (expected: unknown, precision: unknown = DEFAULT
   }
 }
 
-function isCloseTo(actual: number, expected: number, precision: number) {
+function isCloseTo (actual: number, expected: number, precision: number) {
   const diff = Math.abs(actual - expected)
   return diff * 2 < precision
 }
