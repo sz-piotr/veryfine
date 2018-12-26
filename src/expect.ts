@@ -4,6 +4,10 @@ import { validateInstanceOf } from './validators/validateInstanceOf'
 import { validateTypeOf } from './validators/validateTypeOf'
 import { validateTruthy } from './validators/validateTruthy'
 import { validateFalsy } from './validators/validateFalsy'
+import { validateGreaterThan } from './validators/validateGreaterThan'
+import { validateGreaterThanOrEqual } from './validators/validateGreaterThanOrEqual'
+import { validateLessThan } from './validators/validateLessThan'
+import { validateLessThanOrEqual } from './validators/validateLessThanOrEqual'
 
 export function expect (value: any) {
   return new Expect(value)
@@ -44,6 +48,22 @@ class Expect {
 
   toBeFalsy () {
     return this.toSatisfy(validateFalsy)
+  }
+
+  toBeGreaterThan (value: number) {
+    return this.toSatisfy(validateGreaterThan(value))
+  }
+
+  toBeGreaterThanOrEqual (value: number) {
+    return this.toSatisfy(validateGreaterThanOrEqual(value))
+  }
+
+  toBeLessThan (value: number) {
+    return this.toSatisfy(validateLessThan(value))
+  }
+
+  toBeLessThanOrEqual (value: number) {
+    return this.toSatisfy(validateLessThanOrEqual(value))
   }
 
   toSatisfy (fn: Validator): void
