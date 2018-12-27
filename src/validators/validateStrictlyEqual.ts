@@ -9,9 +9,7 @@ export function validateStrictlyEqual (expected: any) {
       success: expected === actual,
       message: `expected ${actualString} to strictly equal ${expectedString}`,
       negatedMessage: `expected ${actualString} not to strictly equal ` +
-        `${expectedString}, but it did`,
-      expected,
-      actual
+        `${expectedString}, but it did`
     }
   }
 }

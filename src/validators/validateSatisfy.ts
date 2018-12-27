@@ -4,9 +4,7 @@ import { hasOwnProperty } from '../utils/hasOwnProperty'
 export type ValidationResult = {
   success: boolean,
   message: string,
-  negatedMessage: string,
-  expected?: any,
-  actual?: any
+  negatedMessage: string
 }
 export type Validator = (value: any) => ValidationResult | boolean
 export type AsyncValidator = (value: any) => Promise<ValidationResult | boolean>
@@ -27,9 +25,9 @@ export function validateSatisfy (
 function processResult (result: unknown, negated: boolean, name: string) {
   if (isValidationResult(result)) {
     if (result.success && negated) {
-      throw new AssertionError(result.negatedMessage, result.expected, result.actual)
+      throw new AssertionError(result.negatedMessage)
     } else if (!result.success && !negated) {
-      throw new AssertionError(result.message, result.expected, result.actual)
+      throw new AssertionError(result.message)
     }
   } else {
     if (result && negated) {

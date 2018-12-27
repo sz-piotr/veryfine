@@ -1,4 +1,5 @@
 import { validateSatisfy, Validator, AsyncValidator } from './validators/validateSatisfy'
+import { validateEqual } from './validators/validateEqual'
 import { validateStrictlyEqual } from './validators/validateStrictlyEqual'
 import { validateInstanceOf } from './validators/validateInstanceOf'
 import { validateTypeOf } from './validators/validateTypeOf'
@@ -29,6 +30,10 @@ class Expect {
       throw new TypeError('Cannot negate an already negated validator.')
     }
     return this
+  }
+
+  toEqual (expected: any) {
+    return this.toSatisfy(validateEqual(expected))
   }
 
   toStrictlyEqual (expected: any) {

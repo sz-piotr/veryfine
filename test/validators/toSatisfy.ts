@@ -114,22 +114,6 @@ describe('.toSatisfy', () => {
         negatedMessage: 'foo'
       }))
     }).to.throw(AssertionError, 'foo')
-
-    let err
-    try {
-      expect(1).not.toSatisfy(() => ({
-        success: true,
-        message: '',
-        negatedMessage: 'foo',
-        expected: 1,
-        actual: 2
-      }))
-    } catch (e) {
-      err = e
-    }
-    chaiExpect(err.message).to.equal('foo')
-    chaiExpect(err.expected).to.equal(1)
-    chaiExpect(err.actual).to.equal(2)
   })
 
   it('fails when fn returns unsuccesful ValidationResult', () => {
@@ -140,22 +124,6 @@ describe('.toSatisfy', () => {
         negatedMessage: ''
       }))
     }).to.throw(AssertionError, 'foo')
-
-    let err
-    try {
-      expect(1).toSatisfy(() => ({
-        success: false,
-        message: 'foo',
-        negatedMessage: '',
-        expected: 1,
-        actual: 2
-      }))
-    } catch (e) {
-      err = e
-    }
-    chaiExpect(err.message).to.equal('foo')
-    chaiExpect(err.expected).to.equal(1)
-    chaiExpect(err.actual).to.equal(2)
   })
 
   it('passes when negated and fn returns unsuccesful ValidationResult', () => {
@@ -177,8 +145,8 @@ describe('.toSatisfy', () => {
   })
 
   it('fails when negated and fn returns succesful Promise<ValidationResult>', async () => {
-    const err1 = new AssertionError('foo')
-    let caught1
+    const err = new AssertionError('foo')
+    let caught
     try {
       await expect(1).not.toSatisfy(async () => ({
         success: true,
@@ -186,33 +154,14 @@ describe('.toSatisfy', () => {
         negatedMessage: 'foo'
       }))
     } catch (e) {
-      caught1 = e
+      caught = e
     }
-    chaiExpect(caught1.message).to.equal(err1.message)
-    chaiExpect(caught1.expected).to.equal(err1.expected)
-    chaiExpect(caught1.actual).to.equal(err1.actual)
-
-    const err2 = new AssertionError('foo', 1, 2)
-    let caught2
-    try {
-      await expect(1).not.toSatisfy(async () => ({
-        success: true,
-        message: '',
-        negatedMessage: 'foo',
-        expected: 1,
-        actual: 2
-      }))
-    } catch (e) {
-      caught2 = e
-    }
-    chaiExpect(caught2.message).to.equal(err2.message)
-    chaiExpect(caught2.expected).to.equal(err2.expected)
-    chaiExpect(caught2.actual).to.equal(err2.actual)
+    chaiExpect(caught.message).to.equal(err.message)
   })
 
   it('fails when fn returns unsuccesful Promise<ValidationResult>', async () => {
-    const err1 = new AssertionError('foo')
-    let caught1
+    const err = new AssertionError('foo')
+    let caught
     try {
       await expect(1).toSatisfy(async () => ({
         success: false,
@@ -220,28 +169,9 @@ describe('.toSatisfy', () => {
         negatedMessage: ''
       }))
     } catch (e) {
-      caught1 = e
+      caught = e
     }
-    chaiExpect(caught1.message).to.equal(err1.message)
-    chaiExpect(caught1.expected).to.equal(err1.expected)
-    chaiExpect(caught1.actual).to.equal(err1.actual)
-
-    const err2 = new AssertionError('foo', 1, 2)
-    let caught2
-    try {
-      await expect(1).toSatisfy(async () => ({
-        success: false,
-        message: 'foo',
-        negatedMessage: '',
-        expected: 1,
-        actual: 2
-      }))
-    } catch (e) {
-      caught2 = e
-    }
-    chaiExpect(caught2.message).to.equal(err2.message)
-    chaiExpect(caught2.expected).to.equal(err2.expected)
-    chaiExpect(caught2.actual).to.equal(err2.actual)
+    chaiExpect(caught.message).to.equal(err.message)
   })
 
   it('passes when negated and fn returns unsuccesful Promise<ValidationResult>', async () => {
