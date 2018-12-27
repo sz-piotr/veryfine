@@ -2,10 +2,10 @@
 
 Veryfine is a delightful expect-style assertion and mocking library for JavaScript.
 It is intended for use with Mocha. Main features include:
-- intelligent deep equality checking
-- first class promise support
-- built-in mock functions
-- hassle-free custom matchers
+- 🕵️ intelligent deep equality checking
+- ⏳ first class promise support
+- 🐵 built-in mock functions
+- 🔧 hassle-free custom matchers
 
 [Check out the documentation](https://veryfine.netlify.com/docs)!
 
