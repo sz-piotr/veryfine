@@ -23,7 +23,7 @@ export class AssertionError extends Error {
         }
       }
       this.stack = stackLines.filter((line, index) =>
-        !/\s+at/.test(line) || index >= cutIndex
+        !/\s+at/.test(line) || index > cutIndex
       ).join('\n')
     } catch (e) {
       // Stack manipulation may fail

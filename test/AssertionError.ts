@@ -33,7 +33,8 @@ describe('AssertionError', () => {
       error = e
     }
     chaiExpect(error.stack)
-      .to.match(/^AssertionError: multiline\nmessage\n\s+at Expect.toSatisfy/)
+      .to.match(/^AssertionError: multiline\nmessage/)
+    chaiExpect(error.stack).not.to.match(/at Expect.toSatisfy/)
   })
 
   it('manipulates the stack trace for built in validators', () => {
@@ -43,7 +44,7 @@ describe('AssertionError', () => {
     } catch (e) {
       error = e
     }
-    chaiExpect(error.stack).to.match(/at Expect.toStrictlyEqual/)
+    chaiExpect(error.stack).not.to.match(/at Expect.toStrictlyEqual/)
     chaiExpect(error.stack).not.to.match(/at Expect.toSatisfy/)
   })
 })
