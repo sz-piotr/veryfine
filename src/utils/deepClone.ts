@@ -30,8 +30,5 @@ export function deepClone (value: any, stack: StackItem[] = []): any {
     return result
   }
 
-  // TODO: support Map
-  // TODO: support Set
-
   return value
 }
