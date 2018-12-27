@@ -1,5 +1,6 @@
 import { stringify } from '../stringify'
 import { hasOwnProperty } from '../utils/hasOwnProperty'
+import { joinPath } from '../utils/path'
 
 type Error = {
   path: string,
@@ -47,7 +48,7 @@ function isDeepEqual (
     if (aIndex === bIndex) {
       return true
     } else {
-      errors.push({ path, message: 'Circular reference mismatch' })
+      errors.push({ path, message: 'circular reference mismatch' })
       return false
     }
   }
@@ -56,7 +57,7 @@ function isDeepEqual (
   if (type !== getType(b)) {
     errors.push({
       path,
-      message: `Expected type ${getType(b)}, received ${type}`
+      message: `expected type ${getType(b)}, received ${type}`
     })
     return false
   }
@@ -68,10 +69,10 @@ function isDeepEqual (
     let result = true
     for (const key of keys) {
       if (!hasOwnProperty(a, key)) {
-        errors.push({ path: joinPath(path, key), message: `Property missing` })
+        errors.push({ path: joinPath(path, key), message: `property missing` })
         result = false
       } else if (!hasOwnProperty(b, key)) {
-        errors.push({ path: joinPath(path, key), message: `Property should not be present` })
+        errors.push({ path: joinPath(path, key), message: `property should not be present` })
         result = false
       } else if (!isDeepEqual(a[key], b[key], errors, joinPath(path, key), aStack, bStack)) {
         result = false
@@ -84,17 +85,17 @@ function isDeepEqual (
 
   if (type === 'array') {
     if (a.length !== b.length) {
-      errors.push({ path, message: `Expected length ${b.length}, received ${a.length}` })
+      errors.push({ path, message: `expected length ${b.length}, received ${a.length}` })
     }
     aStack.push(a)
     bStack.push(b)
     let result = true
     for (let i = 0; i < Math.max(a.length, b.length); i++) {
       if (i >= a.length) {
-        errors.push({ path: joinPath(path, i), message: `Item missing` })
+        errors.push({ path: joinPath(path, i), message: `item missing` })
         result = false
       } else if (i >= b.length) {
-        errors.push({ path: joinPath(path, i), message: `Item should not be present` })
+        errors.push({ path: joinPath(path, i), message: `item should not be present` })
         result = false
       } else if (!isDeepEqual(a[i], b[i], errors, joinPath(path, i), aStack, bStack)) {
         result = false
@@ -105,7 +106,7 @@ function isDeepEqual (
     return result
   }
 
-  errors.push({ path, message: `Expected ${b}, received ${a}` })
+  errors.push({ path, message: `expected ${b}, received ${a}` })
   return false
 }
 
@@ -135,17 +136,6 @@ function keysOf (a: object, b: object) {
     }
   }
   return keys
-}
-
-function joinPath (path: string, key: string | number) {
-  const strKey = key + ''
-  if (/^[a-z_]\w*$/i.test(strKey)) {
-    return `${path}.${strKey}`
-  } else if (/^\d+$/.test(strKey)) {
-    return `${path}[${strKey}]`
-  } else {
-    return `${path}[${JSON.stringify(strKey)}]`
-  }
 }
 
 function formatError ({ path, message }: { path: string, message: string }) {

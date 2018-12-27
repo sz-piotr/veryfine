@@ -209,15 +209,15 @@ describe('.toEqual', () => {
     const lines = err!.message.split('\n').slice(1).map(x => x.trim())
 
     chaiExpect(lines).to.deep.equal([
-      '- .bar | Property missing',
-      '- .foo | Property should not be present',
-      '- .nested | Expected length 2, received 3',
-      '- .nested[0].x | Expected 2, received 1',
-      '- .nested[0].y | Property should not be present',
-      '- .nested[1] | Expected type boolean, received string',
-      '- .nested[2] | Item should not be present',
-      '- ["*+\\"bzz\\"+*"] | Expected length 1, received 0',
-      '- ["*+\\"bzz\\"+*"][0] | Item missing'
+      '- .bar | property missing',
+      '- .foo | property should not be present',
+      '- .nested | expected length 2, received 3',
+      '- .nested[0].x | expected 2, received 1',
+      '- .nested[0].y | property should not be present',
+      '- .nested[1] | expected type boolean, received string',
+      '- .nested[2] | item should not be present',
+      '- ["*+\\"bzz\\"+*"] | expected length 1, received 0',
+      '- ["*+\\"bzz\\"+*"][0] | item missing'
     ])
   })
 })
