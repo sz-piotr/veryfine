@@ -10,10 +10,8 @@ To allow more properties on the evaluated object use [`.toMatchObject`](#verifie
 
 Two values are deeply equal if and only if one of the following is true:
   - [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) returns true when comparing them
+  - They are objects and their own properties are deeply equal
   - They are arrays of the same length and their items are deeply equal
-  - They are sets and their items are strictly equal
-  - They are maps and their keys are stricly equal and values are deeply equal
-  - They are objects and their properties are deeply equal
   - One is an [expectation](#expectations) that the other satisfies
 
 #### Examples
