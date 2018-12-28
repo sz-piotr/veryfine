@@ -11,6 +11,8 @@ import { validateLessThan } from './validators/validateLessThan'
 import { validateLessThanOrEqual } from './validators/validateLessThanOrEqual'
 import { validateCloseTo } from './validators/validateCloseTo'
 import { validateHasProperty } from './validators/validateHasProperty'
+import { validateCalled } from './validators/validateCalled'
+import { validateCalledTimes } from './validators/validateCalledTimes'
 
 export function expect (value: any) {
   return new Expect(value)
@@ -83,6 +85,14 @@ class Expect {
     } else {
       return this.toSatisfy(validateHasProperty(path, expected))
     }
+  }
+
+  toBeCalled () {
+    return this.toSatisfy(validateCalled)
+  }
+
+  toBeCalledTimes (count: number) {
+    return this.toSatisfy(validateCalledTimes(count))
   }
 
   toSatisfy (fn: Validator): void

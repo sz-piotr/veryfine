@@ -30,6 +30,7 @@ export function mockFn (implementation?: Function): MockFunction {
   mock.implementation = implementation || noOp
   mock.pendingImplementations = [] as Function[]
   mock.calls = [] as any[][]
+  mock.isMockFunction = true
 
   mock.returns = function (value: any) {
     mock.implementation = () => value
@@ -72,4 +73,8 @@ export function mockFn (implementation?: Function): MockFunction {
   }
 
   return mock
+}
+
+export function isMockFunction (value: unknown): value is MockFunction {
+  return typeof value === 'function' && (value as any).isMockFunction
 }

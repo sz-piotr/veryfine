@@ -32,4 +32,7 @@ Below is a list of all the verifiers for your convinience:
 - [`toBeResolved`](#verifiers-toberesolved)
 - [`toBeRejected`](#verifiers-toberejected)
 - [`toBeRejectedWith`](#verifiers-toberejectedwith)
+- [`toBeCalled`](#verifiers-tobecalled)
+- [`toBeCalledTimes`](#verifiers-tobecalledtimes)
+- [`toBeCalledWith`](#verifiers-tobecalledwith)
 - [`toSatisfy`](#verifiers-tosatisfy)
