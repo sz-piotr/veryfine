@@ -1,4 +1,4 @@
-import { stringify } from '../stringify'
+import { stringify } from '../utils/stringify'
 import { isNumber } from '../utils/isNumber'
 
 export function validateGreaterThan (expected: unknown) {

@@ -1,4 +1,4 @@
-import { stringify } from '../stringify'
+import { stringify } from '../utils/stringify'
 import { hasOwnProperty } from '../utils/hasOwnProperty'
 import { joinPath } from '../utils/path'
 

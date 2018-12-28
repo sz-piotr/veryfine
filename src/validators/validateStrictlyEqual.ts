@@ -1,4 +1,4 @@
-import { stringify } from '../stringify'
+import { stringify } from '../utils/stringify'
 
 export function validateStrictlyEqual (expected: any) {
   return function (actual: any) {

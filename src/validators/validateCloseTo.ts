@@ -1,4 +1,4 @@
-import { stringify } from '../stringify'
+import { stringify } from '../utils/stringify'
 import { isNumber } from '../utils/isNumber'
 
 const DEFAULT_PRECISION = 0.000000001
