@@ -1,0 +1,11 @@
+# npmignore
+node_modules/
+src/
+test/
+docs/
+.editorconfig
+.gitignore
+tsconfig.json
+tsconfig.build.json
+tslint.json
+yarn.lock

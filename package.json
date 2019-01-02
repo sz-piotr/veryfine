@@ -1,9 +1,25 @@
 {
   "name": "veryfine",
   "description": "Veryfine that your code works. A delightful expect-style assertion and mocking library",
+  "author": "Piotr Szlachciak <szlachciak.piotr@gmail.com>",
   "version": "0.1.0",
+  "keywords": [
+    "testing",
+    "javascript",
+    "typescript",
+    "tdd",
+    "mocha",
+    "mocking"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sz-piotr/veryfine.git"
+  },
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && tsc -b tsconfig.build.json",
+    "prepublishOnly": "yarn build",
+    "build": "rm -rf lib && tsc -b tsconfig.build.json",
     "build:docs": "node docs/build-docs.js",
     "test": "mocha -r ts-node/register \"test/**/*.ts\"",
     "lint": "tslint --project tsconfig.json \"src/**/*.ts\" \"test/**/*.ts\""
