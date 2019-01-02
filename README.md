@@ -1,5 +1,8 @@
 # Veryfine
 
+[![](https://img.shields.io/npm/v/veryfine.svg)](https://www.npmjs.com/package/veryfine)
+[![](https://travis-ci.com/sz-piotr/veryfine.svg?branch=master)](https://travis-ci.com/sz-piotr/veryfine)
+
 Veryfine is a delightful expect-style assertion and mocking library for JavaScript.
 It is intended for use with Mocha. Main features include:
 - 🕵️ intelligent deep equality checking
