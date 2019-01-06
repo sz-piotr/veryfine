@@ -38,11 +38,20 @@ function processResult (result: unknown, negated: boolean, name: string) {
   }
 }
 
-function isValidationResult (value: unknown): value is ValidationResult {
-  // TODO: print warning for objects
-  return value &&
-    typeof value === 'object' &&
-    hasOwnProperty(value, 'success') &&
-    hasOwnProperty(value, 'message') &&
-    hasOwnProperty(value, 'negatedMessage')
+export function isValidationResult (value: unknown): value is ValidationResult {
+  if (value && typeof value === 'object') {
+    if (
+      hasOwnProperty(value, 'success') &&
+      hasOwnProperty(value, 'message') &&
+      hasOwnProperty(value, 'negatedMessage')
+    ) {
+      return true
+    } else {
+      console.warn(
+        'A custom validator returned an object that is not a validation result. ' +
+        'This is equivalent to returning false from the validator and should be avoided.'
+      )
+    }
+  }
+  return false
 }

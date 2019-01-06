@@ -13,10 +13,7 @@ import { validateCloseTo } from './validators/validateCloseTo'
 import { validateHasProperty } from './validators/validateHasProperty'
 import { validateCalled } from './validators/validateCalled'
 import { validateCalledTimes } from './validators/validateCalledTimes'
-
-export function expect (value: any) {
-  return new Expect(value)
-}
+import { createExpectation } from './expectation'
 
 class Expect {
   private value: any
@@ -100,4 +97,13 @@ class Expect {
   toSatisfy (fn: (value: any) => any): any {
     return validateSatisfy(this.value, this.negated, fn)
   }
+}
+
+export function expect (value: any) {
+  return new Expect(value)
+}
+
+expect.toSatisfy = (fn: Validator) => createExpectation(false, fn)
+expect.not = {
+  toSatisfy: (fn: Validator) => createExpectation(true, fn)
 }
