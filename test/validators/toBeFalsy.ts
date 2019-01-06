@@ -10,8 +10,6 @@ describe('.toBeFalsy', () => {
     expect(0).toBeFalsy()
     expect(NaN).toBeFalsy()
     expect('').toBeFalsy()
-    expect('').toBeFalsy()
-    expect(``).toBeFalsy()
   })
 
   it('fails when values are not falsy', () => {

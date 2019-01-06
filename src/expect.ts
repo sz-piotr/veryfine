@@ -104,8 +104,12 @@ export function expect (value: any) {
 }
 
 expect.anything = () => createExpectation(false, () => true)
+expect.toBeTruthy = () => createExpectation(false, validateTruthy)
+expect.toBeFalsy = () => createExpectation(false, validateFalsy)
 expect.toSatisfy = (fn: Validator) => createExpectation(false, fn)
 expect.not = {
   anything: () => createExpectation(true, () => true),
+  toBeTruthy: () => createExpectation(true, validateTruthy),
+  toBeFalsy: () => createExpectation(true, validateFalsy),
   toSatisfy: (fn: Validator) => createExpectation(true, fn)
 }
