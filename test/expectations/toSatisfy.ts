@@ -2,7 +2,7 @@ import { expect } from '../../src'
 import { expect as chaiExpect } from 'chai'
 import { isExpectation } from '../../src/expectation'
 
-describe('expect.satisfies', () => {
+describe('expect.toSatisfy', () => {
   it('returns an expectation', () => {
     const expectation = expect.toSatisfy(() => true)
     chaiExpect(isExpectation(expectation)).to.equal(true);

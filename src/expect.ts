@@ -103,7 +103,9 @@ export function expect (value: any) {
   return new Expect(value)
 }
 
+expect.anything = () => createExpectation(false, () => true)
 expect.toSatisfy = (fn: Validator) => createExpectation(false, fn)
 expect.not = {
+  anything: () => createExpectation(true, () => true),
   toSatisfy: (fn: Validator) => createExpectation(true, fn)
 }
