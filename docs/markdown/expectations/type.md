@@ -1,1 +1,0 @@
-### `expect.type(type)`

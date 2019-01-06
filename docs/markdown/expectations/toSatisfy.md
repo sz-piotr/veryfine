@@ -1,0 +1,1 @@
+### `expect.toSatisfy(fn[, message])`

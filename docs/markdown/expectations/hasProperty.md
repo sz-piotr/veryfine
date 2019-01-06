@@ -1,1 +1,0 @@
-### `expect.hasProperty(path[, value])`

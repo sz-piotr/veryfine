@@ -1,0 +1,1 @@
+### `expect.toBeLessThan(number)`
