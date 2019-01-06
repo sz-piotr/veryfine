@@ -1,5 +1,6 @@
 import { hasOwnProperty } from './hasOwnProperty'
 import { joinPath } from './path'
+import { isExpectation } from '../expectation'
 
 export type Difference = {
   path: string,
@@ -30,6 +31,14 @@ export function recursiveDeepCompare (
   if (aIndex >= 0 || bIndex >= 0) {
     if (aIndex !== bIndex) {
       differences.push({ path, message: 'circular reference mismatch' })
+    }
+    return
+  }
+
+  if (isExpectation(b)) {
+    const result = b(a)
+    if (result) {
+      differences.push({ path, message: result })
     }
     return
   }

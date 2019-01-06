@@ -163,17 +163,19 @@ describe('.toEqual', () => {
     expect(b).not.toEqual(a)
   })
 
-  it('provides', () => {
-    const a: any = {}
-    a.x = a
-    const b: any = { x: {} }
-    b.x.x = b
+  it('passes when expecations pass and calls them with correct values', () => {
+    let arg
+    expect({ x: 1 }).toEqual({ x: expect.toSatisfy((x) => {
+      arg = x
+      return true
+    }) })
+    chaiExpect(arg).to.equal(1)
+  })
 
-    // This is by design
-    // Checking cases like this would massively overcomplicate the code
-
-    expect(a).not.toEqual(b)
-    expect(b).not.toEqual(a)
+  it('fails when expecations fail', () => {
+    chaiExpect(() => {
+      expect({ x: 1 }).toEqual({ x: expect.toSatisfy(() => false) })
+    }).to.throw(AssertionError)
   })
 
   it('can be negated', () => {
