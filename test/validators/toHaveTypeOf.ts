@@ -1,10 +1,10 @@
 import { expect } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 describe('.toHaveTypeOf', () => {
   it('validates the argument to be a string', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toHaveTypeOf(1 as any)
     }).to.throw(TypeError)
   })
@@ -21,11 +21,11 @@ describe('.toHaveTypeOf', () => {
   })
 
   it('fails when values do not have have the specified type', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(123).toHaveTypeOf('string')
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect('hi').toHaveTypeOf('boolean')
     }).to.throw(AssertionError)
   })
@@ -33,7 +33,7 @@ describe('.toHaveTypeOf', () => {
   it('can be negated', () => {
     expect(123).not.toHaveTypeOf('string')
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(123).not.toHaveTypeOf('number')
     }).to.throw(AssertionError)
   })

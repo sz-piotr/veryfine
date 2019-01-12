@@ -1,43 +1,43 @@
 import { expect } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { isExpectation } from '../../src/expectation'
 
 describe('expect.toSatisfy', () => {
   it('returns an expectation', () => {
     const expectation = expect.toSatisfy(() => true)
-    chaiExpect(isExpectation(expectation)).to.equal(true);
+    EXPECT(isExpectation(expectation)).to.equal(true);
   })
 
   it('returns undefined when fn returns true', () => {
     const expectation = expect.toSatisfy(() => true)
-    chaiExpect(expectation(0)).to.equal(undefined)
+    EXPECT(expectation(0)).to.equal(undefined)
   })
 
   it('returns a string when negated and fn returns true', () => {
     const expectation = expect.not.toSatisfy(() => true)
-    chaiExpect(expectation(0)).to.be.a('string')
+    EXPECT(expectation(0)).to.be.a('string')
   })
 
   it('returns a string when fn returns false', () => {
     const expectation = expect.toSatisfy(() => false)
-    chaiExpect(expectation(0)).to.be.a('string')
+    EXPECT(expectation(0)).to.be.a('string')
   })
 
   it('returns undefined when negated and fn returns false', () => {
     const expectation = expect.not.toSatisfy(() => false)
-    chaiExpect(expectation(0)).to.equal(undefined)
+    EXPECT(expectation(0)).to.equal(undefined)
   })
 
   it('fails with a thrown error', () => {
     const err = new Error('foo')
-    chaiExpect(() => {
+    EXPECT(() => {
       expect.toSatisfy(() => { throw err })(0)
     }).to.throw(err)
   })
 
   it('fails when negated and an error is thrown', () => {
     const err = new Error('foo')
-    chaiExpect(() => {
+    EXPECT(() => {
       expect.not.toSatisfy(() => { throw err })(0)
     }).to.throw(err)
   })
@@ -48,7 +48,7 @@ describe('expect.toSatisfy', () => {
       message: '',
       negatedMessage: ''
     }))
-    chaiExpect(expectation(0)).to.equal(undefined)
+    EXPECT(expectation(0)).to.equal(undefined)
   })
 
   it('returns a string when negated and fn returns succesful ValidationResult', () => {
@@ -57,7 +57,7 @@ describe('expect.toSatisfy', () => {
       message: '',
       negatedMessage: 'foo'
     }))
-    chaiExpect(expectation(0)).to.equal('foo')
+    EXPECT(expectation(0)).to.equal('foo')
   })
 
   it('returns a string when fn returns unsuccesful ValidationResult', () => {
@@ -66,7 +66,7 @@ describe('expect.toSatisfy', () => {
       message: 'foo',
       negatedMessage: ''
     }))
-    chaiExpect(expectation(0)).to.equal('foo')
+    EXPECT(expectation(0)).to.equal('foo')
   })
 
   it('returns undefined when negated and fn returns unsuccesful ValidationResult', () => {
@@ -75,6 +75,6 @@ describe('expect.toSatisfy', () => {
       message: '',
       negatedMessage: ''
     }))
-    chaiExpect(expectation(0)).to.equal(undefined)
+    EXPECT(expectation(0)).to.equal(undefined)
   })
 })

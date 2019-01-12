@@ -1,24 +1,24 @@
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { expect } from '../src'
 import { AssertionError } from '../src/AssertionError'
 
 describe('AssertionError', () => {
   it('can be constructed', () => {
     const error = new AssertionError('message', 'expected', 'actual')
-    chaiExpect(error.name).to.equal('AssertionError')
-    chaiExpect(error.message).to.equal('message')
-    chaiExpect(error.expected).to.equal('expected')
-    chaiExpect(error.actual).to.equal('actual')
-    chaiExpect(error instanceof AssertionError).to.equal(true)
+    EXPECT(error.name).to.equal('AssertionError')
+    EXPECT(error.message).to.equal('message')
+    EXPECT(error.expected).to.equal('expected')
+    EXPECT(error.actual).to.equal('actual')
+    EXPECT(error instanceof AssertionError).to.equal(true)
   })
 
   it('can be constructed with only one parameter', () => {
     const error = new AssertionError('message')
-    chaiExpect(error.name).to.equal('AssertionError')
-    chaiExpect(error.message).to.equal('message')
-    chaiExpect(error.expected).to.equal(undefined)
-    chaiExpect(error.actual).to.equal(undefined)
-    chaiExpect(error instanceof AssertionError).to.equal(true)
+    EXPECT(error.name).to.equal('AssertionError')
+    EXPECT(error.message).to.equal('message')
+    EXPECT(error.expected).to.equal(undefined)
+    EXPECT(error.actual).to.equal(undefined)
+    EXPECT(error instanceof AssertionError).to.equal(true)
   })
 
   it('manipulates the stack trace for custom validators', () => {
@@ -32,9 +32,9 @@ describe('AssertionError', () => {
     } catch (e) {
       error = e
     }
-    chaiExpect(error.stack)
+    EXPECT(error.stack)
       .to.match(/^AssertionError: multiline\nmessage/)
-    chaiExpect(error.stack).not.to.match(/at Expect.toSatisfy/)
+    EXPECT(error.stack).not.to.match(/at Expect.toSatisfy/)
   })
 
   it('manipulates the stack trace for built in validators', () => {
@@ -44,7 +44,7 @@ describe('AssertionError', () => {
     } catch (e) {
       error = e
     }
-    chaiExpect(error.stack).not.to.match(/at Expect.toStrictlyEqual/)
-    chaiExpect(error.stack).not.to.match(/at Expect.toSatisfy/)
+    EXPECT(error.stack).not.to.match(/at Expect.toStrictlyEqual/)
+    EXPECT(error.stack).not.to.match(/at Expect.toSatisfy/)
   })
 })

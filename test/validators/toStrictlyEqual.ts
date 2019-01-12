@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 describe('.toStrictlyEqual', () => {
@@ -13,19 +13,19 @@ describe('.toStrictlyEqual', () => {
   })
 
   it('fails when values are not strictly equal', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toStrictlyEqual('world')
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(false).toStrictlyEqual({ x: 1 })
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({ x: 1 }).toStrictlyEqual({ x: 1 })
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(NaN).toStrictlyEqual(NaN)
     }).to.throw(AssertionError)
   })
@@ -33,7 +33,7 @@ describe('.toStrictlyEqual', () => {
   it('can be negated', () => {
     expect(1).not.toStrictlyEqual(2)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).not.toStrictlyEqual(1)
     }).to.throw(AssertionError)
   })

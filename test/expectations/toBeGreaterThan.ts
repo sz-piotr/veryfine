@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 
 describe('expect.toBeGreaterThan', () => {
   const cases: [any, number, boolean][] = [
@@ -17,25 +17,25 @@ describe('expect.toBeGreaterThan', () => {
     if (success) {
       it(`returns undefined for ${caseStr}`, () => {
         const expectation = expect.toBeGreaterThan(expected)
-        chaiExpect(expectation(value)).to.equal(undefined)
+        EXPECT(expectation(value)).to.equal(undefined)
       })
       it(`returns a string when negated for ${caseStr}`, () => {
         const expectation = expect.not.toBeGreaterThan(expected)
-        chaiExpect(expectation(value)).to.be.a('string')
+        EXPECT(expectation(value)).to.be.a('string')
       })
     } else {
       it(`returns a string for ${caseStr}`, () => {
         const expectation = expect.toBeGreaterThan(expected)
-        chaiExpect(expectation(value)).to.be.a('string')
+        EXPECT(expectation(value)).to.be.a('string')
       })
       it(`returns undefined when negated for ${caseStr}`, () => {
         const expectation = expect.not.toBeGreaterThan(expected)
-        chaiExpect(expectation(value)).to.equal(undefined)
+        EXPECT(expectation(value)).to.equal(undefined)
       })
     }
   }
 
   it('validates the argument', () => {
-    chaiExpect(() => expect.toBeGreaterThan('x' as any)).to.throw(TypeError);
+    EXPECT(() => expect.toBeGreaterThan('x' as any)).to.throw(TypeError);
   })
 })

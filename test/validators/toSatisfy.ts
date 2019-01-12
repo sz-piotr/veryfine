@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 describe('.toSatisfy', () => {
@@ -9,7 +9,7 @@ describe('.toSatisfy', () => {
       value = arg
       return true
     })
-    chaiExpect(value).to.equal(1)
+    EXPECT(value).to.equal(1)
   })
 
   it('passes when fn returns true', () => {
@@ -17,7 +17,7 @@ describe('.toSatisfy', () => {
   })
 
   it('fails when negated and fn returns true', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).not.toSatisfy(() => true)
     }).to.throw(AssertionError)
   })
@@ -33,17 +33,17 @@ describe('.toSatisfy', () => {
     } catch (e) {
       error = e
     }
-    chaiExpect(error).to.be.instanceOf(AssertionError)
+    EXPECT(error).to.be.instanceOf(AssertionError)
   })
 
   it('fails when fn does not return true', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toSatisfy(() => false)
     }).to.throw(AssertionError)
   })
 
   it('passes when negated fn does not return true', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).not.toSatisfy(() => false)
     }).not.to.throw()
   })
@@ -55,7 +55,7 @@ describe('.toSatisfy', () => {
     } catch (e) {
       error = e
     }
-    chaiExpect(error).to.be.instanceOf(AssertionError)
+    EXPECT(error).to.be.instanceOf(AssertionError)
   })
 
   it('passes when negated and fn returns a Promise<false>', async () => {
@@ -64,14 +64,14 @@ describe('.toSatisfy', () => {
 
   it('fails with a thrown error', () => {
     const err = new Error('foo')
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toSatisfy(() => { throw err })
     }).to.throw(err)
   })
 
   it('fails when negated and an error is thrown', () => {
     const err = new Error('foo')
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).not.toSatisfy(() => { throw err })
     }).to.throw(err)
   })
@@ -84,7 +84,7 @@ describe('.toSatisfy', () => {
     } catch (e) {
       caught = e
     }
-    chaiExpect(caught).to.equal(err)
+    EXPECT(caught).to.equal(err)
   })
 
   it('fails when negated and fn returns a rejected promise', async () => {
@@ -95,7 +95,7 @@ describe('.toSatisfy', () => {
     } catch (e) {
       caught = e
     }
-    chaiExpect(caught).to.equal(err)
+    EXPECT(caught).to.equal(err)
   })
 
   it('passes when fn returns succesful ValidationResult', () => {
@@ -107,7 +107,7 @@ describe('.toSatisfy', () => {
   })
 
   it('fails when negated and fn returns succesful ValidationResult', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).not.toSatisfy(() => ({
         success: true,
         message: '',
@@ -117,7 +117,7 @@ describe('.toSatisfy', () => {
   })
 
   it('fails when fn returns unsuccesful ValidationResult', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toSatisfy(() => ({
         success: false,
         message: 'foo',
@@ -156,7 +156,7 @@ describe('.toSatisfy', () => {
     } catch (e) {
       caught = e
     }
-    chaiExpect(caught.message).to.equal(err.message)
+    EXPECT(caught.message).to.equal(err.message)
   })
 
   it('fails when fn returns unsuccesful Promise<ValidationResult>', async () => {
@@ -171,7 +171,7 @@ describe('.toSatisfy', () => {
     } catch (e) {
       caught = e
     }
-    chaiExpect(caught.message).to.equal(err.message)
+    EXPECT(caught.message).to.equal(err.message)
   })
 
   it('passes when negated and fn returns unsuccesful Promise<ValidationResult>', async () => {

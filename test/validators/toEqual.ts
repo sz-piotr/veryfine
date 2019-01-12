@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 describe('.toEqual', () => {
@@ -14,19 +14,19 @@ describe('.toEqual', () => {
   })
 
   it('fails when Object.is returns false for primitives', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toEqual(2)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(-0).toEqual(+0)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toEqual('hello')
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(undefined).toEqual(null)
     }).to.throw(AssertionError)
   })
@@ -40,35 +40,35 @@ describe('.toEqual', () => {
   })
 
   it('fails when objects are not deeply equal', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({}).toEqual(123)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({}).toEqual(null)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({ x: 1 }).toEqual({})
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({ x: 1 }).toEqual({ x: 1, y: 2 })
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({ x: 1 }).toEqual({ a: 'a', b: 2 })
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({ x: undefined }).toEqual({})
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({}).toEqual({ x: undefined })
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({ a: 1, b: { c: 1, d: 2 } }).toEqual({ a: 1, b: { c: 1, d: 3 } })
     }).to.throw(AssertionError)
   })
@@ -82,43 +82,43 @@ describe('.toEqual', () => {
   })
 
   it('fails when arrays are not deeply equal', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([]).toEqual({})
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([]).toEqual(null)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([]).toEqual('hello')
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([1]).toEqual([])
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([1]).toEqual([])
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([1, 2]).toEqual([1])
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([1, 2]).toEqual(['a', 2])
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([undefined]).toEqual([])
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([]).toEqual([undefined])
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([1, [2, 3]]).toEqual([1, [2, 4]])
     }).to.throw(AssertionError)
   })
@@ -128,7 +128,7 @@ describe('.toEqual', () => {
   })
 
   it('fails when complex objects are not deeply equal', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([{ x: 1, y: [{}] }]).toEqual([{ x: 1, z: [{}] }])
     }).to.throw(AssertionError)
   })
@@ -145,7 +145,7 @@ describe('.toEqual', () => {
     expect([a]).toEqual([b])
     expect({ one: a, two: b }).toEqual({ one: b, two: a })
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(a).toEqual(c)
     }).to.throw(AssertionError)
   })
@@ -169,11 +169,11 @@ describe('.toEqual', () => {
       arg = x
       return true
     }) })
-    chaiExpect(arg).to.equal(1)
+    EXPECT(arg).to.equal(1)
   })
 
   it('fails when expecations fail', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({ x: 1 }).toEqual({ x: expect.toSatisfy(() => false) })
     }).to.throw(AssertionError)
   })
@@ -181,7 +181,7 @@ describe('.toEqual', () => {
   it('can be negated', () => {
     expect(1).not.toEqual(2)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).not.toEqual(1)
     }).to.throw(AssertionError)
   })
@@ -210,7 +210,7 @@ describe('.toEqual', () => {
     }
     const lines = err!.message.split('\n').slice(1).map(x => x.trim())
 
-    chaiExpect(lines).to.deep.equal([
+    EXPECT(lines).to.deep.equal([
       '- .bar | property missing',
       '- .foo | property should not be present',
       '- .nested | expected length 2, received 3',

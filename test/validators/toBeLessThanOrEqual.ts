@@ -1,14 +1,14 @@
 import { expect } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 describe('.toBeLessThanOrEqual', () => {
   it('validates the argument to be a number', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toBeLessThanOrEqual('NOT_A_NUMBER' as any)
     }).to.throw(TypeError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toBeLessThanOrEqual(NaN)
     }).to.throw(TypeError)
   })
@@ -21,15 +21,15 @@ describe('.toBeLessThanOrEqual', () => {
   })
 
   it('fails when values a > b or a is not a number', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(2).toBeLessThanOrEqual(1)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect('2').toBeLessThanOrEqual(1)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect('hello').toBeLessThanOrEqual(1)
     }).to.throw(AssertionError)
   })
@@ -37,7 +37,7 @@ describe('.toBeLessThanOrEqual', () => {
   it('can be negated', () => {
     expect(2).not.toBeLessThanOrEqual(1)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).not.toBeLessThanOrEqual(2)
     }).to.throw(AssertionError)
   })

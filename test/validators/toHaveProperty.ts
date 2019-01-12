@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 const testObject = {
@@ -18,11 +18,11 @@ const testObject = {
 
 describe('.toHaveProperty', () => {
   it('validates the first argument to be a string and a valid path', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toHaveProperty(1 as any)
     }).to.throw(TypeError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toHaveProperty('&^@')
     }).to.throw(SyntaxError)
   })
@@ -53,25 +53,25 @@ describe('.toHaveProperty', () => {
   })
 
   it('fails when object does not have property', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect([]).toHaveProperty('[1]')
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect({}).toHaveProperty('foo.bar')
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toHaveProperty('baz')
     }).to.throw(AssertionError)
   })
 
   it('fails when object has property, but the value is not strictly equal', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(testObject).toHaveProperty('nested', 3)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(testObject).toHaveProperty('nested', {
         foo: 2,
         bar: undefined

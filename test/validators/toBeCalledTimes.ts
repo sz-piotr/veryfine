@@ -1,10 +1,10 @@
 import { expect, mockFn } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 describe('.toBeCalledTimes', () => {
   it('validates the argument to be numbers', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toBeCalledTimes('NOT_A_NUMBER' as any)
     }).to.throw(TypeError)
   })
@@ -19,11 +19,11 @@ describe('.toBeCalledTimes', () => {
   })
 
   it('fails when mockFn was not been called times or when value is not a mockFn', () => {
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(mockFn()).toBeCalledTimes(1)
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(123).toBeCalledTimes(1)
     }).to.throw(AssertionError)
   })
@@ -33,7 +33,7 @@ describe('.toBeCalledTimes', () => {
 
     expect(fn).not.toBeCalledTimes(1)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       fn()
       expect(fn).not.toBeCalledTimes(1)
     }).to.throw(AssertionError)

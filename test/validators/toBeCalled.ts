@@ -1,5 +1,5 @@
 import { expect, mockFn } from '../../src'
-import { expect as chaiExpect } from 'chai'
+import { expect as EXPECT } from 'chai'
 import { AssertionError } from '../../src/AssertionError'
 
 describe('.toBeCalled', () => {
@@ -12,11 +12,11 @@ describe('.toBeCalled', () => {
   it('fails when mockFn has not been called or when value is not a mockFn', () => {
     const fn = mockFn()
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(fn).toBeCalled()
     }).to.throw(AssertionError)
 
-    chaiExpect(() => {
+    EXPECT(() => {
       expect(1).toBeCalled()
     }).to.throw(AssertionError)
   })
@@ -26,7 +26,7 @@ describe('.toBeCalled', () => {
 
     expect(fn).not.toBeCalled()
 
-    chaiExpect(() => {
+    EXPECT(() => {
       fn()
       expect(fn).not.toBeCalled()
     }).to.throw(AssertionError)
