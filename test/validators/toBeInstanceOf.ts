@@ -1,4 +1,5 @@
 import { expect } from '../../src'
+import { stringify } from '../../src/utils/stringify'
 import { expect as EXPECT } from 'chai'
 import { CHECK, CHECK_EXPECTATION } from './utils'
 
@@ -28,7 +29,7 @@ describe('expect(value).toBeInstanceOf(constructor)', () => {
   })
 
   for (const [value, expected, success] of cases) {
-    const caseStr = `${JSON.stringify(value)} instanceof ${expected.name}`
+    const caseStr = `${stringify(value)} instanceof ${expected.name}`
 
     CHECK(success, caseStr, () => {
       expect(value).toBeInstanceOf(expected)
@@ -46,7 +47,7 @@ describe('expect.toBeInstanceOf(constructor)', () => {
   })
 
   for (const [value, expected, success] of cases) {
-    const caseStr = `${JSON.stringify(value)} instanceof ${expected.name}`
+    const caseStr = `${stringify(value)} instanceof ${expected.name}`
 
     CHECK_EXPECTATION(success, caseStr, () => {
       const expectation = expect.toBeInstanceOf(expected)

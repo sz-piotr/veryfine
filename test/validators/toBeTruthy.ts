@@ -1,4 +1,5 @@
 import { expect } from '../../src'
+import { stringify } from '../../src/utils/stringify'
 import { CHECK, CHECK_EXPECTATION } from './utils'
 
 const cases: [any, boolean][] = [
@@ -24,7 +25,7 @@ const cases: [any, boolean][] = [
 
 describe('expect(value).toBeTruthy()', () => {
   for (const [value, success] of cases) {
-    const caseStr = JSON.stringify(value)
+    const caseStr = stringify(value)
 
     CHECK(success, caseStr, () => {
       expect(value).toBeTruthy()
@@ -38,7 +39,7 @@ describe('expect(value).toBeTruthy()', () => {
 
 describe('expect.toBeTruthy()', () => {
   for (const [value, success] of cases) {
-    const caseStr = JSON.stringify(value)
+    const caseStr = stringify(value)
 
     CHECK_EXPECTATION(success, caseStr, () => {
       const expectation = expect.toBeTruthy()

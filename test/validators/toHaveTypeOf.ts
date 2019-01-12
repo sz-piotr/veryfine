@@ -1,4 +1,5 @@
 import { expect } from '../../src'
+import { stringify } from '../../src/utils/stringify'
 import { expect as EXPECT } from 'chai'
 import { CHECK, CHECK_EXPECTATION } from './utils'
 
@@ -21,7 +22,7 @@ describe('expect(value).toHaveTypeOf(type)', () => {
   })
 
   for (const [value, expected, success] of cases) {
-    const caseStr = `${JSON.stringify(value)} instanceof ${JSON.stringify(expected)}`
+    const caseStr = `${stringify(value)} instanceof ${stringify(expected)}`
 
     CHECK(success, caseStr, () => {
       expect(value).toHaveTypeOf(expected)
@@ -39,7 +40,7 @@ describe('expect.toHaveTypeOf(type)', () => {
   })
 
   for (const [value, expected, success] of cases) {
-    const caseStr = `${JSON.stringify(value)} instanceof ${JSON.stringify(expected)}`
+    const caseStr = `${stringify(value)} instanceof ${stringify(expected)}`
 
     CHECK_EXPECTATION(success, caseStr, () => {
       const expectation = expect.toHaveTypeOf(expected)

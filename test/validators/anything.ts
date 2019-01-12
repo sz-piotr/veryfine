@@ -1,4 +1,5 @@
 import { expect } from '../../src'
+import { stringify } from '../../src/utils/stringify'
 import { CHECK_EXPECTATION } from '../validators/utils'
 
 const cases = [
@@ -12,7 +13,7 @@ const cases = [
 
 describe('expect.anything()', () => {
   for (const value of cases) {
-    const caseStr = JSON.stringify(value)
+    const caseStr = stringify(value)
 
     CHECK_EXPECTATION(true, caseStr, () => {
       const expectation = expect.anything()

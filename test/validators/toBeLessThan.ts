@@ -1,4 +1,5 @@
 import { expect } from '../../src'
+import { stringify } from '../../src/utils/stringify'
 import { expect as EXPECT } from 'chai'
 import { CHECK, CHECK_EXPECTATION } from './utils'
 
@@ -19,7 +20,7 @@ describe('expect(value).toBeLessThan(target)', () => {
   })
 
   for (const [value, expected, success] of cases) {
-    const caseStr = `${JSON.stringify(value)} < ${JSON.stringify(expected)}`
+    const caseStr = `${stringify(value)} < ${stringify(expected)}`
 
     CHECK(success, caseStr, () => {
       expect(value).toBeLessThan(expected)
@@ -38,7 +39,7 @@ describe('expect.toBeLessThan(target)', () => {
   })
 
   for (const [value, expected, success] of cases) {
-    const caseStr = `${JSON.stringify(value)} < ${JSON.stringify(expected)}`
+    const caseStr = `${stringify(value)} < ${stringify(expected)}`
 
     CHECK_EXPECTATION(success, caseStr, () => {
       const expectation = expect.toBeLessThan(expected)

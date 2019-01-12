@@ -1,4 +1,5 @@
 import { expect } from '../../src'
+import { stringify } from '../../src/utils/stringify'
 import { expect as EXPECT } from 'chai'
 import { CHECK, CHECK_EXPECTATION } from './utils'
 
@@ -26,7 +27,7 @@ describe('expect(value).toBeCloseTo(target, precision?)', () => {
   })
 
   for (const [value, expected, precision, success] of cases) {
-    const caseStr = `${JSON.stringify(value)} ~= ${JSON.stringify(expected)}`
+    const caseStr = `${stringify(value)} ~= ${stringify(expected)}`
 
     CHECK(success, caseStr, () => {
       expect(value).toBeCloseTo(expected, precision)
@@ -50,7 +51,7 @@ describe('expect.toBeCloseTo(target, precision?)', () => {
   })
 
   for (const [value, expected, precision, success] of cases) {
-    const caseStr = `${JSON.stringify(value)} ~= ${JSON.stringify(expected)}`
+    const caseStr = `${stringify(value)} ~= ${stringify(expected)}`
 
     CHECK_EXPECTATION(success, caseStr, () => {
       const expectation = expect.toBeCloseTo(expected, precision)
