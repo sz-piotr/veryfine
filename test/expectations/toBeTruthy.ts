@@ -13,7 +13,7 @@ describe('expect.toBeTruthy', () => {
     3.14,
     -3.14,
     Infinity,
-    -Infinity,
+    -Infinity
   ]
 
   for (const value of successes) {

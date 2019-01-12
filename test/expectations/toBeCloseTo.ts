@@ -3,15 +3,15 @@ import { expect as chaiExpect } from 'chai'
 
 describe('expect.toBeCloseTo', () => {
   const cases: [any, number, number | undefined, boolean][] = [
-    [0.1 + 0.2, 0.3, , true],
-    [-0.1 - 0.2, -0.3, , true],
-    [0.1 * 0.2, 0.02, , true],
+    [0.1 + 0.2, 0.3, undefined, true],
+    [-0.1 - 0.2, -0.3, undefined, true],
+    [0.1 * 0.2, 0.02, undefined, true],
     [0.150 + 0.049, 0.2, 0.01, true],
 
-    [0.1 + 0.2, 0.4, , false],
+    [0.1 + 0.2, 0.4, undefined, false],
     [0.150 + 0.049, 0.2, 0.0005, false],
-    ['2', 2, , false],
-    ['hello', 1, , false]
+    ['2', 2, undefined, false],
+    ['hello', 1, undefined, false]
   ]
 
   for (const [value, expected, precision, success] of cases) {
@@ -38,10 +38,10 @@ describe('expect.toBeCloseTo', () => {
   }
 
   it('validates the argument 0', () => {
-    chaiExpect(() => expect.toBeCloseTo('x' as any)).to.throw(TypeError);
+    chaiExpect(() => expect.toBeCloseTo('x' as any)).to.throw(TypeError)
   })
 
   it('validates the argument 1', () => {
-    chaiExpect(() => expect.toBeCloseTo(1, 'x' as any)).to.throw(TypeError);
+    chaiExpect(() => expect.toBeCloseTo(1, 'x' as any)).to.throw(TypeError)
   })
 })

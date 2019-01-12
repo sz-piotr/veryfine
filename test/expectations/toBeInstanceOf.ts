@@ -16,7 +16,7 @@ describe('expect.toBeInstanceOf', () => {
     [[1, 2], Array, true],
     [[3, 4], Object, true],
     [() => {}, Function, true],
-    [function fn() {}, Object, true],
+    [function fn () {}, Object, true],
     [1, Number, false],
     ['hi', String, false],
     [true, Boolean, false]
@@ -46,6 +46,6 @@ describe('expect.toBeInstanceOf', () => {
   }
 
   it('validates the argument', () => {
-    chaiExpect(() => expect.toBeInstanceOf('x' as any)).to.throw(TypeError);
+    chaiExpect(() => expect.toBeInstanceOf('x' as any)).to.throw(TypeError)
   })
 })

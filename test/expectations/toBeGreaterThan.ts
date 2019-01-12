@@ -36,6 +36,6 @@ describe('expect.toBeGreaterThan', () => {
   }
 
   it('validates the argument', () => {
-    EXPECT(() => expect.toBeGreaterThan('x' as any)).to.throw(TypeError);
+    EXPECT(() => expect.toBeGreaterThan('x' as any)).to.throw(TypeError)
   })
 })

@@ -5,7 +5,7 @@ import { isExpectation } from '../../src/expectation'
 describe('expect.toSatisfy', () => {
   it('returns an expectation', () => {
     const expectation = expect.toSatisfy(() => true)
-    EXPECT(isExpectation(expectation)).to.equal(true);
+    EXPECT(isExpectation(expectation)).to.equal(true)
   })
 
   it('returns undefined when fn returns true', () => {

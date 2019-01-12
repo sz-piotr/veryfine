@@ -36,6 +36,6 @@ describe('expect.toBeLessThanOrEqual', () => {
   }
 
   it('validates the argument', () => {
-    chaiExpect(() => expect.toBeLessThanOrEqual('x' as any)).to.throw(TypeError);
+    chaiExpect(() => expect.toBeLessThanOrEqual('x' as any)).to.throw(TypeError)
   })
 })

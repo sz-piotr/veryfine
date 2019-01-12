@@ -2,8 +2,8 @@ import { Validator, isValidationResult } from './validators/validateSatisfy'
 
 export type Expectation = (value: any) => string | undefined
 
-export function createExpectation(negated: boolean, fn: Validator): Expectation {
-  function expectation(value: any) {
+export function createExpectation (negated: boolean, fn: Validator): Expectation {
+  function expectation (value: any) {
     const name = fn.name || 'satisfies'
     const result = fn(value)
 
@@ -26,6 +26,6 @@ export function createExpectation(negated: boolean, fn: Validator): Expectation 
   return expectation
 }
 
-export function isExpectation(value: any): value is Expectation {
+export function isExpectation (value: any): value is Expectation {
   return typeof value === 'function' && value.isExpectation === true
 }

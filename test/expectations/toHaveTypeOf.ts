@@ -12,7 +12,7 @@ describe('expect.toHaveTypeOf', () => {
     [function fn () {}, 'function', true],
     [Symbol(), 'symbol', true],
     [123, 'string', false],
-    ['hi', 'boolean', false],
+    ['hi', 'boolean', false]
   ]
 
   for (const [value, expected, success] of cases) {
@@ -39,6 +39,6 @@ describe('expect.toHaveTypeOf', () => {
   }
 
   it('validates the argument', () => {
-    chaiExpect(() => expect.toHaveTypeOf(null as any)).to.throw(TypeError);
+    chaiExpect(() => expect.toHaveTypeOf(null as any)).to.throw(TypeError)
   })
 })
