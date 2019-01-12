@@ -9,7 +9,7 @@ export function validateLessThan (expected: unknown) {
   return function (actual: any) {
     const actualString = stringify(actual)
 
-    if (!isNumber(expected)) {
+    if (!isNumber(actual)) {
       return {
         success: false,
         message: `expected ${actualString} to be less than ${expected}, but it is not a number`,
