@@ -1,44 +1,53 @@
 import { expect } from '../../src'
 import { expect as EXPECT } from 'chai'
-import { AssertionError } from '../../src/AssertionError'
+import { CHECK, CHECK_EXPECTATION } from './utils'
 
-describe('.toBeLessThanOrEqual', () => {
-  it('validates the argument to be a number', () => {
-    EXPECT(() => {
-      expect(1).toBeLessThanOrEqual('NOT_A_NUMBER' as any)
-    }).to.throw(TypeError)
+const cases: [any, number, boolean][] = [
+  [1, 2, true],
+  [-2, -1, true],
+  [-Infinity, 1, true],
+  [1, 1, true],
+  [2, 1, false],
+  ['1', 2, false],
+  ['hello', 1, false]
+]
 
-    EXPECT(() => {
-      expect(1).toBeLessThanOrEqual(NaN)
-    }).to.throw(TypeError)
+describe('expect(value).toBeLessThanOrEqual(target)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect(1).toBeLessThanOrEqual('x' as any)).to.throw(TypeError)
+    EXPECT(() => expect(1).toBeLessThanOrEqual(NaN as any)).to.throw(TypeError)
   })
 
-  it('passes when a <= b', () => {
-    expect(1).toBeLessThanOrEqual(2)
-    expect(1).toBeLessThanOrEqual(1)
-    expect(-2).toBeLessThanOrEqual(-1)
-    expect(-Infinity).toBeLessThanOrEqual(1)
+  for (const [value, expected, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} < ${JSON.stringify(expected)}`
+
+    CHECK(success, caseStr, () => {
+      expect(value).toBeLessThanOrEqual(expected)
+    })
+
+    CHECK(!success, 'negated and ' + caseStr, () => {
+      expect(value).not.toBeLessThanOrEqual(expected)
+    })
+  }
+})
+
+describe('expect.toBeLessThanOrEqual(target)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect.toBeLessThanOrEqual('x' as any)).to.throw(TypeError)
+    EXPECT(() => expect.toBeLessThanOrEqual(NaN as any)).to.throw(TypeError)
   })
 
-  it('fails when values a > b or a is not a number', () => {
-    EXPECT(() => {
-      expect(2).toBeLessThanOrEqual(1)
-    }).to.throw(AssertionError)
+  for (const [value, expected, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} < ${JSON.stringify(expected)}`
 
-    EXPECT(() => {
-      expect('2').toBeLessThanOrEqual(1)
-    }).to.throw(AssertionError)
+    CHECK_EXPECTATION(success, caseStr, () => {
+      const expectation = expect.toBeLessThanOrEqual(expected)
+      return expectation(value)
+    })
 
-    EXPECT(() => {
-      expect('hello').toBeLessThanOrEqual(1)
-    }).to.throw(AssertionError)
-  })
-
-  it('can be negated', () => {
-    expect(2).not.toBeLessThanOrEqual(1)
-
-    EXPECT(() => {
-      expect(1).not.toBeLessThanOrEqual(2)
-    }).to.throw(AssertionError)
-  })
+    CHECK_EXPECTATION(!success, 'negated and ' + caseStr, () => {
+      const expectation = expect.not.toBeLessThanOrEqual(expected)
+      return expectation(value)
+    })
+  }
 })

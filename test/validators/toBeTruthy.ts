@@ -1,33 +1,53 @@
 import { expect } from '../../src'
-import { expect as EXPECT } from 'chai'
-import { AssertionError } from '../../src/AssertionError'
+import { CHECK, CHECK_EXPECTATION } from './utils'
 
-describe('.toBeTruthy', () => {
-  it('passes when values are truthy', () => {
-    expect(true).toBeTruthy()
-    expect({}).toBeTruthy()
-    expect([]).toBeTruthy()
-    expect(42).toBeTruthy()
-    expect('foo').toBeTruthy()
-    expect(new Date()).toBeTruthy()
-    expect(-42).toBeTruthy()
-    expect(3.14).toBeTruthy()
-    expect(-3.14).toBeTruthy()
-    expect(Infinity).toBeTruthy()
-    expect(-Infinity).toBeTruthy()
-  })
+const cases: [any, boolean][] = [
+  [true, true],
+  [{}, true],
+  [[], true],
+  [42, true],
+  ['foo', true],
+  [new Date(), true],
+  [-42, true],
+  [3.14, true],
+  [-3.14, true],
+  [Infinity, true],
+  [-Infinity, true],
 
-  it('fails when values are not truthy', () => {
-    EXPECT(() => {
-      expect(false).toBeTruthy()
-    }).to.throw(AssertionError)
-  })
+  [false, false],
+  [null, false],
+  [undefined, false],
+  [0, false],
+  [NaN, false],
+  ['', false]
+]
 
-  it('can be negated', () => {
-    expect(false).not.toBeTruthy()
+describe('expect(value).toBeTruthy()', () => {
+  for (const [value, success] of cases) {
+    const caseStr = JSON.stringify(value)
 
-    EXPECT(() => {
-      expect(true).not.toBeTruthy()
-    }).to.throw(AssertionError)
-  })
+    CHECK(success, caseStr, () => {
+      expect(value).toBeTruthy()
+    })
+
+    CHECK(!success, 'negated and ' + caseStr, () => {
+      expect(value).not.toBeTruthy()
+    })
+  }
+})
+
+describe('expect.toBeTruthy()', () => {
+  for (const [value, success] of cases) {
+    const caseStr = JSON.stringify(value)
+
+    CHECK_EXPECTATION(success, caseStr, () => {
+      const expectation = expect.toBeTruthy()
+      return expectation(value)
+    })
+
+    CHECK_EXPECTATION(!success, 'negated and ' + caseStr, () => {
+      const expectation = expect.not.toBeTruthy()
+      return expectation(value)
+    })
+  }
 })

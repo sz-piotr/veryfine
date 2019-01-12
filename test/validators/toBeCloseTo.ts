@@ -1,56 +1,65 @@
 import { expect } from '../../src'
 import { expect as EXPECT } from 'chai'
-import { AssertionError } from '../../src/AssertionError'
+import { CHECK, CHECK_EXPECTATION } from './utils'
 
-describe('.toBeCloseTo', () => {
-  it('validates the arguments to be numbers', () => {
-    EXPECT(() => {
-      expect(1).toBeCloseTo('NOT_A_NUMBER' as any)
-    }).to.throw(TypeError)
+const cases: [any, number, number | undefined, boolean][] = [
+  [0.1 + 0.2, 0.3, undefined, true],
+  [-0.1 - 0.2, -0.3, undefined, true],
+  [0.1 * 0.2, 0.02, undefined, true],
+  [0.150 + 0.049, 0.2, 0.01, true],
 
-    EXPECT(() => {
-      expect(1).toBeCloseTo(NaN)
-    }).to.throw(TypeError)
+  [0.1 + 0.2, 0.4, undefined, false],
+  [0.150 + 0.049, 0.2, 0.0005, false],
+  ['2', 2, undefined, false],
+  ['hello', 1, undefined, false]
+]
 
-    EXPECT(() => {
-      expect(1).toBeCloseTo(1, 'NOT_A_NUMBER' as any)
-    }).to.throw(TypeError)
-
-    EXPECT(() => {
-      expect(1).toBeCloseTo(1, NaN)
-    }).to.throw(TypeError)
+describe('expect(value).toBeCloseTo(target, precision?)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect(1).toBeCloseTo('x' as any)).to.throw(TypeError)
+    EXPECT(() => expect(1).toBeCloseTo(NaN as any)).to.throw(TypeError)
   })
 
-  it('passes when a ~= b', () => {
-    expect(0.1 + 0.2).toBeCloseTo(0.3)
-    expect(-0.1 - 0.2).toBeCloseTo(-0.3)
-    expect(0.1 * 0.2).toBeCloseTo(0.02)
-    expect(0.150 + 0.049).toBeCloseTo(0.2, 0.01)
+  it('validates the 1st argument', () => {
+    EXPECT(() => expect(1).toBeCloseTo(1, 'x' as any)).to.throw(TypeError)
+    EXPECT(() => expect(1).toBeCloseTo(1, NaN as any)).to.throw(TypeError)
   })
 
-  it('fails when values a ~= b or a is not a number', () => {
-    EXPECT(() => {
-      expect(0.1 + 0.2).toBeCloseTo(0.4)
-    }).to.throw(AssertionError)
+  for (const [value, expected, precision, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} ~= ${JSON.stringify(expected)}`
 
-    EXPECT(() => {
-      expect(0.150 + 0.049).toBeCloseTo(0.2, 0.0005)
-    }).to.throw(AssertionError)
+    CHECK(success, caseStr, () => {
+      expect(value).toBeCloseTo(expected, precision)
+    })
 
-    EXPECT(() => {
-      expect('2').toBeCloseTo(2)
-    }).to.throw(AssertionError)
+    CHECK(!success, 'negated and ' + caseStr, () => {
+      expect(value).not.toBeCloseTo(expected, precision)
+    })
+  }
+})
 
-    EXPECT(() => {
-      expect('hello').toBeCloseTo(1)
-    }).to.throw(AssertionError)
+describe('expect.toBeCloseTo(target, precision?)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect.toBeCloseTo('x' as any)).to.throw(TypeError)
+    EXPECT(() => expect.toBeCloseTo(NaN as any)).to.throw(TypeError)
   })
 
-  it('can be negated', () => {
-    expect(0.1 + 0.2).not.toBeCloseTo(0.4)
-
-    EXPECT(() => {
-      expect(0.1 + 0.2).not.toBeCloseTo(0.3)
-    }).to.throw(AssertionError)
+  it('validates the 1st argument', () => {
+    EXPECT(() => expect.toBeCloseTo(1, 'x' as any)).to.throw(TypeError)
+    EXPECT(() => expect.toBeCloseTo(1, NaN as any)).to.throw(TypeError)
   })
+
+  for (const [value, expected, precision, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} ~= ${JSON.stringify(expected)}`
+
+    CHECK_EXPECTATION(success, caseStr, () => {
+      const expectation = expect.toBeCloseTo(expected, precision)
+      return expectation(value)
+    })
+
+    CHECK_EXPECTATION(!success, 'negated and ' + caseStr, () => {
+      const expectation = expect.not.toBeCloseTo(expected, precision)
+      return expectation(value)
+    })
+  }
 })

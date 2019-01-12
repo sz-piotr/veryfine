@@ -1,47 +1,53 @@
 import { expect } from '../../src'
 import { expect as EXPECT } from 'chai'
-import { AssertionError } from '../../src/AssertionError'
+import { CHECK, CHECK_EXPECTATION } from './utils'
 
-describe('.toBeGreaterThan', () => {
-  it('validates the argument to be a number', () => {
-    EXPECT(() => {
-      expect(1).toBeGreaterThan('NOT_A_NUMBER' as any)
-    }).to.throw(TypeError)
+const cases: [any, number, boolean][] = [
+  [2, 1, true],
+  [-1, -2, true],
+  [Infinity, 1, true],
+  [1, 2, false],
+  [1, 1, false],
+  ['2', 1, false],
+  ['hello', 1, false]
+]
 
-    EXPECT(() => {
-      expect(1).toBeGreaterThan(NaN)
-    }).to.throw(TypeError)
+describe('expect(value).toBeGreaterThan(target)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect(1).toBeGreaterThan('x' as any)).to.throw(TypeError)
+    EXPECT(() => expect(1).toBeGreaterThan(NaN as any)).to.throw(TypeError)
   })
 
-  it('passes when a > b', () => {
-    expect(2).toBeGreaterThan(1)
-    expect(-1).toBeGreaterThan(-2)
-    expect(Infinity).toBeGreaterThan(1)
+  for (const [value, expected, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} > ${JSON.stringify(expected)}`
+
+    CHECK(success, caseStr, () => {
+      expect(value).toBeGreaterThan(expected)
+    })
+
+    CHECK(!success, 'negated and ' + caseStr, () => {
+      expect(value).not.toBeGreaterThan(expected)
+    })
+  }
+})
+
+describe('expect.toBeGreaterThan(target)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect.toBeGreaterThan('x' as any)).to.throw(TypeError)
+    EXPECT(() => expect.toBeGreaterThan(NaN as any)).to.throw(TypeError)
   })
 
-  it('fails when values a <= b or a is not a number', () => {
-    EXPECT(() => {
-      expect(1).toBeGreaterThan(2)
-    }).to.throw(AssertionError)
+  for (const [value, expected, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} > ${JSON.stringify(expected)}`
 
-    EXPECT(() => {
-      expect(1).toBeGreaterThan(1)
-    }).to.throw(AssertionError)
+    CHECK_EXPECTATION(success, caseStr, () => {
+      const expectation = expect.toBeGreaterThan(expected)
+      return expectation(value)
+    })
 
-    EXPECT(() => {
-      expect('2').toBeGreaterThan(1)
-    }).to.throw(AssertionError)
-
-    EXPECT(() => {
-      expect('hello').toBeGreaterThan(1)
-    }).to.throw(AssertionError)
-  })
-
-  it('can be negated', () => {
-    expect(1).not.toBeGreaterThan(2)
-
-    EXPECT(() => {
-      expect(2).not.toBeGreaterThan(1)
-    }).to.throw(AssertionError)
-  })
+    CHECK_EXPECTATION(!success, 'negated and ' + caseStr, () => {
+      const expectation = expect.not.toBeGreaterThan(expected)
+      return expectation(value)
+    })
+  }
 })

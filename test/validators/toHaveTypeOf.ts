@@ -1,40 +1,54 @@
 import { expect } from '../../src'
 import { expect as EXPECT } from 'chai'
-import { AssertionError } from '../../src/AssertionError'
+import { CHECK, CHECK_EXPECTATION } from './utils'
 
-describe('.toHaveTypeOf', () => {
-  it('validates the argument to be a string', () => {
-    EXPECT(() => {
-      expect(1).toHaveTypeOf(1 as any)
-    }).to.throw(TypeError)
+const cases: [any, string, boolean][] = [
+  [123, 'number', true],
+  ['hi', 'string', true],
+  [true, 'boolean', true],
+  [undefined, 'undefined', true],
+  [{ a: 1 }, 'object', true],
+  [null, 'object', true],
+  [function fn () {}, 'function', true],
+  [Symbol(), 'symbol', true],
+  [123, 'string', false],
+  ['hi', 'boolean', false]
+]
+
+describe('expect(value).toHaveTypeOf(type)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect(1).toHaveTypeOf(1 as any)).to.throw(TypeError)
   })
 
-  it('passes when values have the specified type', () => {
-    expect(123).toHaveTypeOf('number')
-    expect('hi').toHaveTypeOf('string')
-    expect(true).toHaveTypeOf('boolean')
-    expect(undefined).toHaveTypeOf('undefined')
-    expect({ a: 1 }).toHaveTypeOf('object')
-    expect(null).toHaveTypeOf('object')
-    expect(function fn () {}).toHaveTypeOf('function')
-    expect(Symbol()).toHaveTypeOf('symbol')
+  for (const [value, expected, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} instanceof ${JSON.stringify(expected)}`
+
+    CHECK(success, caseStr, () => {
+      expect(value).toHaveTypeOf(expected)
+    })
+
+    CHECK(!success, 'negated and ' + caseStr, () => {
+      expect(value).not.toHaveTypeOf(expected)
+    })
+  }
+})
+
+describe('expect.toHaveTypeOf(type)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect.toHaveTypeOf(1 as any)).to.throw(TypeError)
   })
 
-  it('fails when values do not have have the specified type', () => {
-    EXPECT(() => {
-      expect(123).toHaveTypeOf('string')
-    }).to.throw(AssertionError)
+  for (const [value, expected, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} instanceof ${JSON.stringify(expected)}`
 
-    EXPECT(() => {
-      expect('hi').toHaveTypeOf('boolean')
-    }).to.throw(AssertionError)
-  })
+    CHECK_EXPECTATION(success, caseStr, () => {
+      const expectation = expect.toHaveTypeOf(expected)
+      return expectation(value)
+    })
 
-  it('can be negated', () => {
-    expect(123).not.toHaveTypeOf('string')
-
-    EXPECT(() => {
-      expect(123).not.toHaveTypeOf('number')
-    }).to.throw(AssertionError)
-  })
+    CHECK_EXPECTATION(!success, 'negated and ' + caseStr, () => {
+      const expectation = expect.not.toHaveTypeOf(expected)
+      return expectation(value)
+    })
+  }
 })

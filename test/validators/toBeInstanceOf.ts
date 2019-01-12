@@ -1,60 +1,61 @@
 import { expect } from '../../src'
 import { expect as EXPECT } from 'chai'
-import { AssertionError } from '../../src/AssertionError'
+import { CHECK, CHECK_EXPECTATION } from './utils'
 
 class Foo {}
 class Bar {}
 class FooBar extends Foo {}
 
-describe('.toBeInstanceOf', () => {
-  it('validates the argument to be a function', () => {
-    EXPECT(() => {
-      expect(new Foo()).toBeInstanceOf('NOT_A_FUNCTION' as any)
-    }).to.throw(TypeError)
+const cases: [any, Function, boolean][] = [
+  [new Foo(), Foo, true],
+  [new Bar(), Foo, false],
+  [new FooBar(), Foo, true],
+  [new Bar(), Object, true],
+  [{ a: 1 }, Object, true],
+  [Object.create(null), Object, false],
+  [[1, 2], Array, true],
+  [[3, 4], Object, true],
+  [() => {}, Function, true],
+  [function fn () {}, Object, true],
+  [1, Number, false],
+  ['hi', String, false],
+  [true, Boolean, false]
+]
+
+describe('expect(value).toBeInstanceOf(constructor)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect(1).toBeInstanceOf('x' as any)).to.throw(TypeError)
   })
 
-  it('passes when values are instances of argument', () => {
-    expect(new Foo()).toBeInstanceOf(Foo)
+  for (const [value, expected, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} instanceof ${expected.name}`
 
-    expect(new FooBar()).toBeInstanceOf(Foo)
-    expect(new Bar()).toBeInstanceOf(Object)
+    CHECK(success, caseStr, () => {
+      expect(value).toBeInstanceOf(expected)
+    })
 
-    expect({ a: 1 }).toBeInstanceOf(Object)
+    CHECK(!success, 'negated and ' + caseStr, () => {
+      expect(value).not.toBeInstanceOf(expected)
+    })
+  }
+})
 
-    expect([1, 2]).toBeInstanceOf(Array)
-    expect([3, 4]).toBeInstanceOf(Object)
-
-    expect(() => {}).toBeInstanceOf(Function)
-    expect(function fn () {}).toBeInstanceOf(Object)
+describe('expect.toBeInstanceOf(constructor)', () => {
+  it('validates the 0th argument', () => {
+    EXPECT(() => expect.toBeInstanceOf('x' as any)).to.throw(TypeError)
   })
 
-  it('fails when values are not instances of argument', () => {
-    EXPECT(() => {
-      expect(new Bar()).toBeInstanceOf(Foo)
-    }).to.throw(AssertionError)
+  for (const [value, expected, success] of cases) {
+    const caseStr = `${JSON.stringify(value)} instanceof ${expected.name}`
 
-    EXPECT(() => {
-      expect(Object.create(null)).toBeInstanceOf(Object)
-    }).to.throw(AssertionError)
+    CHECK_EXPECTATION(success, caseStr, () => {
+      const expectation = expect.toBeInstanceOf(expected)
+      return expectation(value)
+    })
 
-    EXPECT(() => {
-      expect(1).toBeInstanceOf(Number)
-    }).to.throw(AssertionError)
-
-    EXPECT(() => {
-      expect('hi').toBeInstanceOf(String)
-    }).to.throw(AssertionError)
-
-    EXPECT(() => {
-      expect(true).toBeInstanceOf(Boolean)
-    }).to.throw(AssertionError)
-  })
-
-  it('can be negated', () => {
-    expect(new Foo()).not.toBeInstanceOf(Bar)
-
-    EXPECT(() => {
-      expect(new Bar()).toBeInstanceOf(Foo)
-    }).to.throw(AssertionError)
-  })
+    CHECK_EXPECTATION(!success, 'negated and ' + caseStr, () => {
+      const expectation = expect.not.toBeInstanceOf(expected)
+      return expectation(value)
+    })
+  }
 })

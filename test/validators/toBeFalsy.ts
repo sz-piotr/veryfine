@@ -1,28 +1,53 @@
 import { expect } from '../../src'
-import { expect as EXPECT } from 'chai'
-import { AssertionError } from '../../src/AssertionError'
+import { CHECK, CHECK_EXPECTATION } from './utils'
 
-describe('.toBeFalsy', () => {
-  it('passes when values are falsy', () => {
-    expect(false).toBeFalsy()
-    expect(null).toBeFalsy()
-    expect(undefined).toBeFalsy()
-    expect(0).toBeFalsy()
-    expect(NaN).toBeFalsy()
-    expect('').toBeFalsy()
-  })
+const cases: [any, boolean][] = [
+  [false, true],
+  [null, true],
+  [undefined, true],
+  [0, true],
+  [NaN, true],
+  ['', true],
 
-  it('fails when values are not falsy', () => {
-    EXPECT(() => {
-      expect(true).toBeFalsy()
-    }).to.throw(AssertionError)
-  })
+  [true, false],
+  [{}, false],
+  [[], false],
+  [42, false],
+  ['foo', false],
+  [new Date(), false],
+  [-42, false],
+  [3.14, false],
+  [-3.14, false],
+  [Infinity, false],
+  [-Infinity, false]
+]
 
-  it('can be negated', () => {
-    expect(true).not.toBeFalsy()
+describe('expect(value).toBeFalsy()', () => {
+  for (const [value, success] of cases) {
+    const caseStr = JSON.stringify(value)
 
-    EXPECT(() => {
-      expect(false).not.toBeFalsy()
-    }).to.throw(AssertionError)
-  })
+    CHECK(success, caseStr, () => {
+      expect(value).toBeFalsy()
+    })
+
+    CHECK(!success, 'negated and ' + caseStr, () => {
+      expect(value).not.toBeFalsy()
+    })
+  }
+})
+
+describe('expect.toBeFalsy()', () => {
+  for (const [value, success] of cases) {
+    const caseStr = JSON.stringify(value)
+
+    CHECK_EXPECTATION(success, caseStr, () => {
+      const expectation = expect.toBeFalsy()
+      return expectation(value)
+    })
+
+    CHECK_EXPECTATION(!success, 'negated and ' + caseStr, () => {
+      const expectation = expect.not.toBeFalsy()
+      return expectation(value)
+    })
+  }
 })
