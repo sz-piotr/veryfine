@@ -36,14 +36,14 @@ export function stringify (value: unknown, stack: any[] = []): string {
   }
 }
 
-function stringifyFunction(fn: Function): string {
+function stringifyFunction (fn: Function): string {
   if (fn.name) {
     return `Function(${fn.name})`
   }
   return `Function`
 }
 
-function stringifyObject(value: object, stack: any[]): string {
+function stringifyObject (value: object, stack: any[]): string {
   if (Array.isArray(value)) {
     return stringifyArray(value, stack)
   }
@@ -87,11 +87,11 @@ function stringifyObject(value: object, stack: any[]): string {
   return `${prototype.constructor.name} ${stringifyPlainObject(value, stack)}`
 }
 
-function stringifyArray(array: any[], stack: any[]): string {
+function stringifyArray (array: any[], stack: any[]): string {
   return `[${array.map(x => stringify(x, stack)).join(', ')}]`
 }
 
-function stringifyNullProtoObject(object: object, stack: any[]): string {
+function stringifyNullProtoObject (object: object, stack: any[]): string {
   const members = stringifyMembers(object, stack)
   if (members) {
     return `{ (null prototype) ${members} }`
@@ -99,7 +99,7 @@ function stringifyNullProtoObject(object: object, stack: any[]): string {
   return '{ (null prototype) }'
 }
 
-function stringifyPlainObject(object: object, stack: any[]): string {
+function stringifyPlainObject (object: object, stack: any[]): string {
   const members = stringifyMembers(object, stack)
   if (members) {
     return `{ ${members} }`
@@ -107,7 +107,7 @@ function stringifyPlainObject(object: object, stack: any[]): string {
   return '{}'
 }
 
-function stringifyMembers(object: Record<string, any>, stack: any[]): string {
+function stringifyMembers (object: Record<string, any>, stack: any[]): string {
   return Object.keys(object)
     .sort()
     .map(key => `${key}: ${stringify(object[key], stack)}`)

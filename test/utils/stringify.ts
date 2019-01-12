@@ -50,7 +50,7 @@ const cases: [any, string][] = [
   [Symbol('asd'), 'Symbol(asd)'],
 
   [namedLambda, 'Function(namedLambda)'],
-  [function aaa() {}, 'Function(aaa)'],
+  [function aaa () {}, 'Function(aaa)'],
   [function () {}, 'Function'],
   [() => {}, 'Function'],
 
@@ -62,7 +62,7 @@ const cases: [any, string][] = [
 
   [new Error(), 'Error'],
   [new Error('asd'), 'Error("asd")'],
-  [new TypeError, 'TypeError'],
+  [new TypeError(), 'TypeError'],
   [new TypeError('asd'), 'TypeError("asd")'],
 
   [Object.create(null), '{ (null prototype) }'],
