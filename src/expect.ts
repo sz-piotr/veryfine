@@ -178,6 +178,21 @@ export namespace expect {
   export const anything = () => createExpectation(false, () => true)
 
   /**
+   * Checks is the value is instance of a given class. Uses the `instanceof`
+   * operator.
+   * @param constructor target class constructor.
+   */
+  export const toBeInstanceOf = (constructor: Function) =>
+    createExpectation(false, validateInstanceOf(constructor))
+
+  /**
+   * Checks if the value is of a given type. Uses the `typeof` operator.
+   * @param type target type.
+   */
+  export const toHaveTypeOf = (type: string) =>
+    createExpectation(false, validateTypeOf(type))
+
+  /**
    * Checks if the value is truthy (`!!value === true`).
    */
   export const toBeTruthy = () => createExpectation(false, validateTruthy)
@@ -239,6 +254,21 @@ export namespace expect {
      * Always succeeds.
      */
     export const anything = () => createExpectation(true, () => true)
+
+    /**
+     * Checks is the value is instance of a given class. Uses the `instanceof`
+     * operator.
+     * @param constructor target class constructor.
+     */
+    export const toBeInstanceOf = (constructor: Function) =>
+      createExpectation(true, validateInstanceOf(constructor))
+
+    /**
+     * Checks if the value is of a given type. Uses the `typeof` operator.
+     * @param type target type.
+     */
+    export const toHaveTypeOf = (type: string) =>
+      createExpectation(true, validateTypeOf(type))
 
     /**
      * Checks if the value is truthy (`!!value === true`).
