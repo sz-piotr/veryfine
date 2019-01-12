@@ -171,118 +171,126 @@ export function expect (value: any) {
   return new Expect(value)
 }
 
-/**
- * Always succeeds.
- */
-expect.anything = () => createExpectation(false, () => true)
-
-/**
- * Checks if the value is truthy (`!!value === true`).
- */
-expect.toBeTruthy = () => createExpectation(false, validateTruthy)
-
-/**
- * Checks if the value is falsy (`!!value === false`).
- */
-expect.toBeFalsy = () => createExpectation(false, validateFalsy)
-
-/**
- * Checks if the value is a number greater than target.
- * @param target number to compare the value to.
- */
-expect.toBeGreaterThan = (target: number) =>
-  createExpectation(false, validateGreaterThan(target))
-
-/**
- * Checks if the value is a number greater than or equal to target.
- * @param target number to compare the value to.
- */
-expect.toBeGreaterThanOrEqual = (target: number) =>
-  createExpectation(false, validateGreaterThanOrEqual(target))
-
-/**
- * Checks if the value is a number less than target.
- * @param target number to compare the value to.
- */
-expect.toBeLessThan = (target: number) =>
-  createExpectation(false, validateLessThan(target))
-
-/**
- * Checks if the value is a number less than or equal to target.
- * @param target number to compare the value to.
- */
-expect.toBeLessThanOrEqual = (target: number) =>
-  createExpectation(false, validateLessThanOrEqual(target))
-
-/**
- * Checks if the value is a number close to target within a given precision.
- * @param target number to compare the value to.
- * @param precision (optional) desired precision
- */
-expect.toBeCloseTo = (target: number, precision?: number) =>
-  createExpectation(false, validateCloseTo(target, precision))
-
-/**
- * Checks that the value passes the test in the form of a given function.
- * @param validator function that processes the value.
- */
-expect.toSatisfy = (validator: Validator) => createExpectation(false, validator)
-
-expect.not = {
+export namespace expect {
   /**
    * Always succeeds.
    */
-  anything: () => createExpectation(true, () => true),
+  export const anything = () => createExpectation(false, () => true)
 
   /**
    * Checks if the value is truthy (`!!value === true`).
    */
-  toBeTruthy: () => createExpectation(true, validateTruthy),
+  export const toBeTruthy = () => createExpectation(false, validateTruthy)
 
   /**
    * Checks if the value is falsy (`!!value === false`).
    */
-  toBeFalsy: () => createExpectation(true, validateFalsy),
+  export const toBeFalsy = () => createExpectation(false, validateFalsy)
 
   /**
    * Checks if the value is a number greater than target.
    * @param target number to compare the value to.
    */
-  toBeGreaterThan: (target: number) =>
-    createExpectation(true, validateGreaterThan(target)),
+  export const toBeGreaterThan = (target: number) =>
+    createExpectation(false, validateGreaterThan(target))
 
   /**
    * Checks if the value is a number greater than or equal to target.
    * @param target number to compare the value to.
    */
-  toBeGreaterThanOrEqual: (target: number) =>
-    createExpectation(true, validateGreaterThanOrEqual(target)),
+  export const toBeGreaterThanOrEqual = (target: number) =>
+    createExpectation(false, validateGreaterThanOrEqual(target))
 
   /**
    * Checks if the value is a number less than target.
    * @param target number to compare the value to.
    */
-  toBeLessThan: (target: number) =>
-    createExpectation(true, validateLessThan(target)),
+  export const toBeLessThan = (target: number) =>
+    createExpectation(false, validateLessThan(target))
 
   /**
    * Checks if the value is a number less than or equal to target.
    * @param target number to compare the value to.
    */
-  toBeLessThanOrEqual: (target: number) =>
-    createExpectation(true, validateLessThanOrEqual(target)),
+  export const toBeLessThanOrEqual = (target: number) =>
+    createExpectation(false, validateLessThanOrEqual(target))
 
   /**
    * Checks if the value is a number close to target within a given precision.
    * @param target number to compare the value to.
    * @param precision (optional) desired precision
    */
-  toBeCloseTo: (target: number, precision?: number) =>
-    createExpectation(true, validateCloseTo(target, precision)),
+  export const toBeCloseTo = (target: number, precision?: number) =>
+    createExpectation(false, validateCloseTo(target, precision))
 
   /**
    * Checks that the value passes the test in the form of a given function.
    * @param validator function that processes the value.
    */
-  toSatisfy: (validator: Validator) => createExpectation(true, validator)
+  export const toSatisfy = (validator: Validator) =>
+    createExpectation(false, validator)
+
+  /**
+   * Negates an expectation. The negated expectaiton fails when the normal would
+   * pass and passes when the normal would fail.
+   */
+  export namespace not {
+    /**
+     * Always succeeds.
+     */
+    export const anything = () => createExpectation(true, () => true)
+
+    /**
+     * Checks if the value is truthy (`!!value === true`).
+     */
+    export const toBeTruthy = () => createExpectation(true, validateTruthy)
+
+    /**
+     * Checks if the value is falsy (`!!value === false`).
+     */
+    export const toBeFalsy = () => createExpectation(true, validateFalsy)
+
+    /**
+     * Checks if the value is a number greater than target.
+     * @param target number to compare the value to.
+     */
+    export const toBeGreaterThan = (target: number) =>
+      createExpectation(true, validateGreaterThan(target))
+
+    /**
+     * Checks if the value is a number greater than or equal to target.
+     * @param target number to compare the value to.
+     */
+    export const toBeGreaterThanOrEqual = (target: number) =>
+      createExpectation(true, validateGreaterThanOrEqual(target))
+
+    /**
+     * Checks if the value is a number less than target.
+     * @param target number to compare the value to.
+     */
+    export const toBeLessThan = (target: number) =>
+      createExpectation(true, validateLessThan(target))
+
+    /**
+     * Checks if the value is a number less than or equal to target.
+     * @param target number to compare the value to.
+     */
+    export const toBeLessThanOrEqual = (target: number) =>
+      createExpectation(true, validateLessThanOrEqual(target))
+
+    /**
+     * Checks if the value is a number close to target within a given precision.
+     * @param target number to compare the value to.
+     * @param precision (optional) desired precision
+     */
+    export const toBeCloseTo = (target: number, precision?: number) =>
+      createExpectation(true, validateCloseTo(target, precision))
+
+    /**
+     * Checks that the value passes the test in the form of a given function.
+     * @param validator function that processes the value.
+     */
+    export const toSatisfy = (validator: Validator) =>
+      createExpectation(true, validator)
+  }
 }
