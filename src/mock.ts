@@ -1,19 +1,65 @@
-const noOp = () => { }
-
 interface MockFunction {
   (...args: any[]): any,
+
+  /**
+   * Array of arguments passed in each call.
+   */
   calls: any[][],
+
+  /**
+   * Specify the default behaviour of the mock to return a value.
+   * @param value value to return by default.
+   */
   returns (value: any): this,
+
+  /**
+   * Specify the next behaviour of the mock to return a value.
+   * @param value value to return once.
+   */
   returnsOnce (value: any): this,
+
+  /**
+   * Specify the default behaviour of the mock to throw an error.
+   * @param error (optional) error to be thrown by default.
+   */
   throws (error?: any): this,
+
+  /**
+   * Specify the next behaviour of the mock to throw an error.
+   * @param error (optional) error to be thrown once.
+   */
   throwsOnce (error?: any): this,
+
+  /**
+   * Specify the default behaviour of the mock to return a resolved promise.
+   * @param value (optional) value to be contained in the promise.
+   */
   resolves (value?: any): this,
+
+  /**
+   * Specify the next behaviour of the mock to return a resolved promise.
+   * @param value (optional) value to be contained in the promise.
+   */
   resolvesOnce (value?: any): this,
+
+  /**
+   * Specify the default behaviour of the mock to return a rejected promise.
+   * @param error (optional) error to be contained in the promise.
+   */
   rejects (error?: any): this,
+
+  /**
+   * Specify the next behaviour of the mock to return a rejected promise.
+   * @param error (optional) error to be contained in the promise.
+   */
   rejectsOnce (error?: any): this
 }
 
-export function mockFn (implementation?: Function): MockFunction {
+/**
+ * Create a mock function that remembers calls.
+ * @param implementation function to forward calls to.
+ */
+export function mockFn (implementation: Function = () => {}): MockFunction {
   if (implementation !== undefined && typeof implementation !== 'function') {
     throw new TypeError('argument 0 of mockFn must be a function')
   }
@@ -27,7 +73,7 @@ export function mockFn (implementation?: Function): MockFunction {
     return mock.implementation.apply(null, args)
   }
 
-  mock.implementation = implementation || noOp
+  mock.implementation = implementation
   mock.pendingImplementations = [] as Function[]
   mock.calls = [] as any[][]
   mock.isMockFunction = true
