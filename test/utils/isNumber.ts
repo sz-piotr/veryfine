@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { isNumber } from '../../src/utils/isNumber'
+import { isNumber } from '../../src/utils'
 
 describe('isNumber', () => {
   it('returns true for numbers', () => {

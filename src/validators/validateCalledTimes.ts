@@ -1,5 +1,4 @@
-import { stringify } from '../utils/stringify'
-import { isNumber } from '../utils/isNumber'
+import { stringify, isNumber } from '../utils'
 import { isMockFunction } from '../mock'
 
 export function validateCalledTimes (count: unknown) {

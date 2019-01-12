@@ -1,5 +1,4 @@
-import { stringify } from '../utils/stringify'
-import { parsePath } from '../utils/path'
+import { stringify, parsePath } from '../utils'
 
 export function validateHasProperty (path: string, expected?: any) {
   if (typeof path !== 'string') {

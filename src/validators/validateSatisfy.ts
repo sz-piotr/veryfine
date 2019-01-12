@@ -1,5 +1,5 @@
 import { AssertionError } from '../AssertionError'
-import { hasOwnProperty } from '../utils/hasOwnProperty'
+import { hasOwnProperty } from '../utils'
 
 export type ValidationResult = {
   success: boolean,

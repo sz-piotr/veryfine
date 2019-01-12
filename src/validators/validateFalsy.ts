@@ -1,4 +1,4 @@
-import { stringify } from '../utils/stringify'
+import { stringify } from '../utils'
 
 export function validateFalsy (actual: any) {
   const actualString = stringify(actual)

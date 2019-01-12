@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { joinPath, parsePath } from '../../src/utils/path'
+import { joinPath, parsePath } from '../../src/utils'
 
 describe('joinPath', () => {
   it('joins normal properties', () => {

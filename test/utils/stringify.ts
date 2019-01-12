@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { stringify } from '../../src/utils/stringify'
+import { stringify } from '../../src/utils'
 
 const namedLambda = () => {}
 const nullProtoXY: any = Object.create(null)

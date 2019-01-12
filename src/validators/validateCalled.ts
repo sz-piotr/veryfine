@@ -1,4 +1,4 @@
-import { stringify } from '../utils/stringify'
+import { stringify } from '../utils'
 import { isMockFunction } from '../mock'
 
 export function validateCalled (actual: unknown) {

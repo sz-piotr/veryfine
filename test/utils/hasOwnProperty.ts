@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { hasOwnProperty } from '../../src/utils/hasOwnProperty'
+import { hasOwnProperty } from '../../src/utils'
 
 describe('hasOwnProperty', () => {
   it('returns true when objects have own property', () => {

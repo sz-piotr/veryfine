@@ -1,5 +1,4 @@
-import { stringify } from '../utils/stringify'
-import { deepCompare, Difference } from '../utils/deepCompare'
+import { stringify, deepCompare, Difference } from '../utils'
 
 export function validateEqual (expected: any) {
   return function (actual: any) {

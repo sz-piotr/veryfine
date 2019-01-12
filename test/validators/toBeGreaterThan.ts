@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { stringify } from '../../src/utils/stringify'
+import { stringify } from '../../src/utils'
 import { expect as EXPECT } from 'chai'
 import { CHECK, CHECK_EXPECTATION } from './utils'
 

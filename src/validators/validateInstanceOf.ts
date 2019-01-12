@@ -1,4 +1,4 @@
-import { stringify } from '../utils/stringify'
+import { stringify } from '../utils'
 
 export function validateInstanceOf (constructor: unknown) {
   if (typeof constructor !== 'function') {

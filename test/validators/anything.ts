@@ -1,5 +1,5 @@
 import { expect } from '../../src'
-import { stringify } from '../../src/utils/stringify'
+import { stringify } from '../../src/utils'
 import { CHECK_EXPECTATION } from '../validators/utils'
 
 const cases = [
