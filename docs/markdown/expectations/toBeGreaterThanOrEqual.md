@@ -1,1 +1,0 @@
-### `expect.toBeGreaterThanOrEqual(number)`

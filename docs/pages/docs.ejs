@@ -20,72 +20,15 @@
 
   <nav class="documentation-nav">
     <ul>
-      <li><a href="#verifiers">Verifiers</a></li>
-      <li><a href="#expectations">Expectations</a></li>
-      <li><a href="#mocks">Mocks</a></li>
+      <li><a href="#matchers">Matchers</a></li>
+      <li><a href="#mock-functions">Mocks</a></li>
     </ul>
   </nav>
 
   <hr>
 
   <section>
-    <h2 id="verifiers">Verifiers</h2>
-
-    <%- include('../partials/intro', { name: 'verifiers' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toEqual' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toStrictlyEqual' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeInstanceOf' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toHaveTypeOf' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeTruthy' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeFalsy' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeGreaterThan' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeGreaterThanOrEqual' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeLessThan' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeLessThanOrEqual' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeCloseTo' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toHaveProperty' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toMatch' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toMatchObject' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toThrow' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeResolved' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeRejected' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeRejectedWith' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeCalled' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeCalledTimes' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toBeCalledWith' }) %>
-    <%- include('../partials/docitem', { name: 'verifiers/toSatisfy' }) %>
-
-    <h2 id="expectations">Expectations</h2>
-
-    <%- include('../partials/intro', { name: 'expectations' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/anything' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toStrictlyEqual' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toBeInstanceOf' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toHaveTypeOf' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toBeTruthy' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toBeFalsy' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toBeGreaterThan' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toBeGreaterThanOrEqual' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toBeLessThan' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toBeLessThanOrEqual' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toBeCloseTo' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toHaveProperty' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toMatch' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toMatchObject' }) %>
-    <%- include('../partials/docitem', { name: 'expectations/toSatisfy' }) %>
-
-    <h2 id="mocks">Mocks</h2>
-
-    <%- include('../partials/intro', { name: 'mocks' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/mockFn' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/returns' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/throws' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/resolves' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/rejects' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/returnsOnce' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/throwsOnce' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/resolvesOnce' }) %>
-    <%- include('../partials/docitem', { name: 'mocks/rejectsOnce' }) %>
+    <%- markdown('docs') %>
   </section>
 </article>
 

@@ -10,7 +10,6 @@ import { validateGreaterThanOrEqual } from './validators/validateGreaterThanOrEq
 import { validateLessThan } from './validators/validateLessThan'
 import { validateLessThanOrEqual } from './validators/validateLessThanOrEqual'
 import { validateCloseTo } from './validators/validateCloseTo'
-import { validateHasProperty } from './validators/validateHasProperty'
 import { validateCalled } from './validators/validateCalled'
 import { validateCalledTimes } from './validators/validateCalledTimes'
 import { createExpectation } from './expectation'
@@ -123,21 +122,6 @@ class Expect {
    */
   toBeCloseTo (target: number, precision?: number) {
     return this.toSatisfy(validateCloseTo(target, precision))
-  }
-
-  /**
-   * Checks if the value has a desired property. The property might be nested.
-   * Optionally supports passing a desired property value. The value is then
-   * checked for deep equality like in `toEqual`.
-   * @param path string representing property access. e.g. `"foo.bar[3]"`.
-   * @param expected (optional) desired value of the property.
-   */
-  toHaveProperty (path: string, expected?: any) {
-    if (arguments.length === 1) {
-      return this.toSatisfy(validateHasProperty(path))
-    } else {
-      return this.toSatisfy(validateHasProperty(path, expected))
-    }
   }
 
   /**

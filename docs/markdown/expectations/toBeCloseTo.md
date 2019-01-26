@@ -1,1 +1,0 @@
-### `expect.toBeCloseTo(number[, precision])`

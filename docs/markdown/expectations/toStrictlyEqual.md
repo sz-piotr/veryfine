@@ -1,1 +1,0 @@
-### `expect.toStrictlyEqual(value)`

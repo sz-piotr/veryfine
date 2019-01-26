@@ -1,1 +1,0 @@
-### `expect.toHaveTypeOf(type)`

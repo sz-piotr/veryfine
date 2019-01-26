@@ -1,1 +1,0 @@
-### `expect.toMatchObject(object)`

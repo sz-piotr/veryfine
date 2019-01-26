@@ -1,5 +1,4 @@
 export { Difference, deepCompare, recursiveDeepCompare } from './deepCompare'
 export { hasOwnProperty } from './hasOwnProperty'
 export { isNumber } from './isNumber'
-export { joinPath, parsePath } from './path'
 export { stringify } from './stringify'

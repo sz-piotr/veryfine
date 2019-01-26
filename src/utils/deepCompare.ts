@@ -1,5 +1,4 @@
 import { hasOwnProperty } from './hasOwnProperty'
-import { joinPath } from './path'
 import { isExpectation } from '../expectation'
 
 export type Difference = {
@@ -92,6 +91,17 @@ export function recursiveDeepCompare (
   }
 
   differences.push({ path, message: `expected ${b}, received ${a}` })
+}
+
+function joinPath (path: string, key: string | number) {
+  const strKey = key + ''
+  if (/^[a-z_]\w*$/i.test(strKey)) {
+    return `${path}.${strKey}`
+  } else if (/^\d+$/.test(strKey)) {
+    return `${path}[${strKey}]`
+  } else {
+    return `${path}[${JSON.stringify(strKey)}]`
+  }
 }
 
 function getType (value: unknown) {

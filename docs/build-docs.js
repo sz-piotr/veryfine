@@ -10,9 +10,7 @@ const outDir = path.join(__dirname, 'public');
 
 function markdown(name) {
   const location = path.join(__dirname, 'markdown', name + '.md');
-  return marked(fse.readFileSync(location, 'utf-8'), {
-    headerIds: false
-  });
+  return marked(fse.readFileSync(location, 'utf-8'));
 }
 
 async function build() {

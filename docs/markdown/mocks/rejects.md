@@ -1,1 +1,0 @@
-### `mockFn().rejects([error])`
