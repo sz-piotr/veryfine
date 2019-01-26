@@ -18,8 +18,9 @@ export function stringify (value: unknown, stack: any[] = []): string {
       case 'bigint': // NOTE: no automatic tests!
         return value.toString() + 'n'
       case 'boolean':
-      case 'symbol':
         return value.toString()
+      case 'symbol':
+        return stringifySymbol(value)
       case 'undefined':
         return 'undefined'
       case 'string':
@@ -29,18 +30,26 @@ export function stringify (value: unknown, stack: any[] = []): string {
       case 'object':
         return stringifyObject(value!, stack)
       default:
-        return '[Unserializable]'
+        return '<Unserializable>' // NOTE: no automatic tests!
     }
   } finally {
     stack.pop()
   }
 }
 
+function stringifySymbol (symbol: Symbol) {
+  if ((symbol as any).description) {
+    return `<Symbol ${(symbol as any).description}>`
+  } else {
+    return '<Symbol>'
+  }
+}
+
 function stringifyFunction (fn: Function): string {
   if (fn.name) {
-    return `Function(${fn.name})`
+    return `<function ${fn.name}>`
   }
-  return `Function`
+  return `<function>`
 }
 
 function stringifyObject (value: object, stack: any[]): string {
@@ -51,25 +60,29 @@ function stringifyObject (value: object, stack: any[]): string {
   if (value instanceof Error) {
     const constructor = value.constructor.name || value.name
     if (value.message) {
-      return `${constructor}(${JSON.stringify(value.message)})`
+      return `<${constructor} ${JSON.stringify(value.message)}>`
     }
-    return constructor
+    return `<${constructor}>`
   }
 
   if (value instanceof String) {
-    return `String(${JSON.stringify(value)})`
+    return `<String ${JSON.stringify(value)}>`
   }
 
   if (value instanceof Number) {
-    return `Number(${value})`
+    return `<Number ${value}>`
   }
 
   if (value instanceof Boolean) {
-    return `Boolean(${value})`
+    return `<Boolean ${value}>`
   }
 
   if (value instanceof Date) {
-    return `Date(${value.toISOString()})`
+    return `<Date ${value.toISOString()}>`
+  }
+
+  if (value instanceof RegExp) {
+    return value.toString()
   }
 
   const prototype = Object.getPrototypeOf(value)
@@ -84,7 +97,7 @@ function stringifyObject (value: object, stack: any[]): string {
   ) {
     return stringifyPlainObject(value, stack)
   }
-  return `${prototype.constructor.name} ${stringifyPlainObject(value, stack)}`
+  return `<${prototype.constructor.name} ${stringifyPlainObject(value, stack)}>`
 }
 
 function stringifyArray (array: any[], stack: any[]): string {

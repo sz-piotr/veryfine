@@ -46,24 +46,24 @@ const cases: [any, string][] = [
   [true, 'true'],
   [false, 'false'],
 
-  [Symbol(), 'Symbol()'],
-  [Symbol('asd'), 'Symbol(asd)'],
+  [Symbol(), '<Symbol>'],
+  [Symbol('asd'), '<Symbol asd>'],
 
-  [namedLambda, 'Function(namedLambda)'],
-  [function aaa () {}, 'Function(aaa)'],
-  [function () {}, 'Function'],
-  [() => {}, 'Function'],
+  [namedLambda, '<function namedLambda>'],
+  [function aaa () {}, '<function aaa>'],
+  [function () {}, '<function>'],
+  [() => {}, '<function>'],
 
   [[], '[]'],
-  [[1, null, 'hello', () => {}], '[1, null, "hello", Function]'],
+  [[1, null, 'hello', () => {}], '[1, null, "hello", <function>]'],
   ['1234567'.split(''), '["1", "2", "3", "4", "5", "6", "7"]'],
   [[1, [2, [3]]], '[1, [2, [3]]]'],
   [[{ a: [1] }], '[{ a: [1] }]'],
 
-  [new Error(), 'Error'],
-  [new Error('asd'), 'Error("asd")'],
-  [new TypeError(), 'TypeError'],
-  [new TypeError('asd'), 'TypeError("asd")'],
+  [new Error(), '<Error>'],
+  [new Error('asd'), '<Error "asd">'],
+  [new TypeError(), '<TypeError>'],
+  [new TypeError('asd'), '<TypeError "asd">'],
 
   [Object.create(null), '{ (null prototype) }'],
   [nullProtoXY, '{ (null prototype) x: 1, y: 2 }'],
@@ -76,15 +76,18 @@ const cases: [any, string][] = [
   [[circular1, circular3], '[{ x: <Circular> }, [<Circular>]]'],
   [[obj, obj], '[{}, {}]'],
 
-  [myClassInstance, 'MyClass { x: 1 }'],
-  [[myClassInstance], '[MyClass { x: 1 }]'],
+  [myClassInstance, '<MyClass { x: 1 }>'],
+  [[myClassInstance], '[<MyClass { x: 1 }>]'],
 
-  [new String('asd'), 'String("asd")'],
-  [new Number(12), 'Number(12)'],
-  [new Boolean(false), 'Boolean(false)'],
+  [new String('asd'), '<String "asd">'],
+  [new Number(12), '<Number 12>'],
+  [new Boolean(false), '<Boolean false>'],
 
-  [Promise.resolve(1), 'Promise {}'],
-  [new Date(0), 'Date(1970-01-01T00:00:00.000Z)']
+  [Promise.resolve(1), '<Promise {}>'],
+  [new Date(0), '<Date 1970-01-01T00:00:00.000Z>'],
+
+  [/x/, '/x/'],
+  [/x/gi, '/x/gi']
 ]
 
 describe('stringify', () => {
