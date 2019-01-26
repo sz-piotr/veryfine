@@ -1,4 +1,4 @@
-import { stringify, deepCompare, Difference } from '../utils'
+import { stringify, deepCompare, formatDifferences } from '../utils'
 
 export function validateEqual (expected: any) {
   return function (actual: any) {
@@ -10,16 +10,9 @@ export function validateEqual (expected: any) {
     return {
       success: differences.length === 0,
       message: `expected ${actualString} to equal ${expectedString}\n` +
-        differences.map(formatDifference).join('\n'),
+        formatDifferences(differences),
       negatedMessage: `expected ${actualString} not to equal ` +
         `${expectedString}, but it did`
     }
   }
-}
-
-function formatDifference ({ path, message }: Difference) {
-  if (path) {
-    return `      - ${path} | ${message}`
-  }
-  return `      - ${message}`
 }

@@ -12,6 +12,7 @@ import { validateLessThanOrEqual } from './validators/validateLessThanOrEqual'
 import { validateCloseTo } from './validators/validateCloseTo'
 import { validateCalled } from './validators/validateCalled'
 import { validateCalledTimes } from './validators/validateCalledTimes'
+import { validateCalledWith } from './validators/validateCalledWith'
 import { createExpectation } from './expectation'
 
 class Expect {
@@ -138,6 +139,15 @@ class Expect {
    */
   toBeCalledTimes (count: number) {
     return this.toSatisfy(validateCalledTimes(count))
+  }
+
+  /**
+   * Checks if the value is a `mockFn` that has been called a most recently
+   * with the specified arguments.
+   * @param count number of times the `mockFn` has to be called.
+   */
+  toBeCalledWith (...args: any[]) {
+    return this.toSatisfy(validateCalledWith(args))
   }
 
   /**

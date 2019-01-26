@@ -6,6 +6,17 @@ export type Difference = {
   message: string
 }
 
+export function formatDifferences (differences: Difference[]) {
+  return differences.map(formatDifference).join('\n')
+}
+
+function formatDifference ({ path, message }: Difference) {
+  if (path) {
+    return `      - ${path} | ${message}`
+  }
+  return `      - ${message}`
+}
+
 export function deepCompare (actual: any, expected: any) {
   const differences: Difference[] = []
   recursiveDeepCompare(actual, expected, differences)
