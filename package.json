@@ -2,7 +2,7 @@
   "name": "veryfine",
   "description": "Veryfine that your code works. A delightful expect-style assertion and mocking library",
   "author": "Piotr Szlachciak <szlachciak.piotr@gmail.com>",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "keywords": [
     "testing",
     "javascript",
