@@ -413,9 +413,9 @@ describe('toMatch', () => {
 Use `.toThrow` to check if a value is a function that will throw when called.
 
 If you provide an error constructor as an argument, the type of the thrown error
-will be compared. If you provide an error instance as an argument the types will
-be compared and deep equality will be checked (the `stack` property is omitted
-when checking error deep equality).
+will be compared. If you provide a string as a second argument the error message
+will be compared to that string. If you provide a regex as a second argument
+the error message will be tested against it.
 
 ```javascript
 import { expect } from 'veryfine'
@@ -429,7 +429,8 @@ describe('toThrow', () => {
 
   it('can optionally specify something about the error', () => {
     expect(() => { throw new TypeError() }).toThrow(TypeError)
-    expect(() => { throw new TypeError('hi') }).toThrow(new TypeError('hi'))
+    expect(() => { throw new TypeError('hi') }).toThrow(TypeError, 'hi')
+    expect(() => { throw new TypeError('xxx') }).toThrow(TypeError, /^x+$/)
   })
 })
 ```

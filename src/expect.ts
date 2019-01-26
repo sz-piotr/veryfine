@@ -10,6 +10,7 @@ import { validateGreaterThanOrEqual } from './validators/validateGreaterThanOrEq
 import { validateLessThan } from './validators/validateLessThan'
 import { validateLessThanOrEqual } from './validators/validateLessThanOrEqual'
 import { validateCloseTo } from './validators/validateCloseTo'
+import { validateThrows } from './validators/validateThrows'
 import { validateCalled } from './validators/validateCalled'
 import { validateCalledTimes } from './validators/validateCalledTimes'
 import { validateCalledWith } from './validators/validateCalledWith'
@@ -119,10 +120,19 @@ class Expect {
   /**
    * Checks if the value is a number close to target within a given precision.
    * @param target number to compare the value to.
-   * @param precision (optional) desired precision
+   * @param precision (optional) desired precision.
    */
   toBeCloseTo (target: number, precision?: number) {
     return this.toSatisfy(validateCloseTo(target, precision))
+  }
+
+  /**
+   * Checks if the value is a function that throws.
+   * @param constructor (optional) error class to compare the thrown error to.
+   * @param message (optional) string or regex to compare the thrown error to.
+   */
+  toThrow (constructor?: Function, message?: string | RegExp) {
+    return this.toSatisfy(validateThrows(constructor, message))
   }
 
   /**
